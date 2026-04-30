@@ -122,21 +122,16 @@
   .module .name{font-family:'Inter Tight',sans-serif;font-weight:700;font-size:18px;text-transform:uppercase;letter-spacing:-0.01em;margin-bottom:8px}
   .module .desc{font-size:13px;line-height:1.5;color:var(--ink-2)}
 
-  /* Capabilities + Integration row */
-  .cap-int-grid{display:grid;grid-template-columns:1fr 1fr;gap:32px;margin-bottom:64px}
-  .cap-block,.int-block{border:1px solid var(--rule);padding:28px}
-  .cap-block h4,.int-block h4{font-family:'Inter Tight',sans-serif;font-weight:700;font-size:18px;text-transform:uppercase;letter-spacing:-0.01em;margin-bottom:18px;display:flex;justify-content:space-between;align-items:baseline}
-  .cap-block h4 .count,.int-block h4 .count{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--rust);font-weight:400;letter-spacing:0.05em}
-  .cap-list{list-style:none}
+  /* Capabilities row */
+  .cap-int-grid{display:grid;grid-template-columns:1fr;gap:32px;margin-bottom:64px}
+  .cap-block{border:1px solid var(--rule);padding:28px}
+  .cap-block h4{font-family:'Inter Tight',sans-serif;font-weight:700;font-size:18px;text-transform:uppercase;letter-spacing:-0.01em;margin-bottom:18px;display:flex;justify-content:space-between;align-items:baseline}
+  .cap-block h4 .count{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--rust);font-weight:400;letter-spacing:0.05em}
+  .cap-list{list-style:none;display:grid;grid-template-columns:1fr 1fr;gap:0 32px}
   .cap-list li{display:grid;grid-template-columns:18px 1fr;gap:10px;padding:10px 0;font-size:14px;line-height:1.55;color:var(--ink-2);border-bottom:1px solid var(--rule-soft)}
   .cap-list li:last-child{border-bottom:none;padding-bottom:0}
   .cap-list li::before{content:'→';color:var(--rust);font-family:'JetBrains Mono',monospace;font-size:12px}
   .cap-list li strong{color:var(--ink);font-weight:500}
-
-  .int-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
-  .int-pill{padding:8px 12px;border:1px solid var(--rule-soft);font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.05em;text-transform:uppercase;text-align:center;color:var(--ink-2)}
-  .int-pill.live{background:var(--ink);color:var(--paper);border-color:var(--ink)}
-  .int-pill.live::before{content:'● ';color:var(--rust)}
 
   /* Field strip — cinematic vignette */
   .field-strip{background:var(--paper-2);border-top:1px solid var(--rule);border-bottom:1px solid var(--rule);padding:80px 56px;display:grid;grid-template-columns:200px 1fr 200px;gap:64px;align-items:center;max-width:1400px;margin:0 auto 0}
@@ -455,19 +450,6 @@
             <li><span><strong>Field-replayable telemetry</strong> for production incident reconstruction.</span></li>
           </ul>
         </div>
-        <div class="int-block">
-          <h4>Integrations <span class="count">VERIFIED</span></h4>
-          <div class="int-grid">
-            <div class="int-pill live">DRDO ASTRA</div>
-            <div class="int-pill live">HAL TEJAS</div>
-            <div class="int-pill">ADANI EAGLE</div>
-            <div class="int-pill live">L&amp;T MANTIS</div>
-            <div class="int-pill">BEL 3D-R</div>
-            <div class="int-pill live">JETSON ORIN</div>
-            <div class="int-pill live">AMD V-1605B</div>
-            <div class="int-pill">NXP S32G</div>
-          </div>
-        </div>
       </div>
     </div>
 
@@ -607,19 +589,6 @@
             <li><span><strong>Heterogeneous co-resident</strong> — fixed-wing, rotorcraft, USV, UGV in one mesh.</span></li>
           </ul>
         </div>
-        <div class="int-block">
-          <h4>Integrations <span class="count">VERIFIED</span></h4>
-          <div class="int-grid">
-            <div class="int-pill live">MAVLink 2</div>
-            <div class="int-pill live">PX4</div>
-            <div class="int-pill live">ARDUPILOT</div>
-            <div class="int-pill">ROS 2 HUMBLE</div>
-            <div class="int-pill live">DDS / RTPS</div>
-            <div class="int-pill">UCI · OMS</div>
-            <div class="int-pill live">STANAG 4586</div>
-            <div class="int-pill">JTRS WAVEFORMS</div>
-          </div>
-        </div>
       </div>
     </div>
 
@@ -754,19 +723,6 @@
             <li><span><strong>Calm density</strong> — informationally rich, visually composed.</span></li>
             <li><span><strong>Replay-able</strong> for after-action review and training.</span></li>
           </ul>
-        </div>
-        <div class="int-block">
-          <h4>Integrations <span class="count">VERIFIED</span></h4>
-          <div class="int-grid">
-            <div class="int-pill live">MIL-STD EUD</div>
-            <div class="int-pill live">SAMSUNG TAB ACTIVE</div>
-            <div class="int-pill">PANASONIC FZ-G2</div>
-            <div class="int-pill live">CHROMIUM 124+</div>
-            <div class="int-pill live">CESIUM ION</div>
-            <div class="int-pill">DECK.GL</div>
-            <div class="int-pill live">MAPBOX GL</div>
-            <div class="int-pill">ARC GIS PRO</div>
-          </div>
         </div>
       </div>
     </div>
@@ -909,19 +865,6 @@
             <li><span><strong>Post-quantum ready</strong> — Kyber, Dilithium pathways available.</span></li>
             <li><span><strong>CERT-In compliant</strong> by default — incident reports submission-ready.</span></li>
           </ul>
-        </div>
-        <div class="int-block">
-          <h4>Integrations <span class="count">VERIFIED</span></h4>
-          <div class="int-grid">
-            <div class="int-pill live">RHEL · UBUNTU LTS</div>
-            <div class="int-pill live">KUBERNETES 1.30+</div>
-            <div class="int-pill">DRDO BHAROS</div>
-            <div class="int-pill live">YOTTA · CtrlS</div>
-            <div class="int-pill">RACKBANK INDIA</div>
-            <div class="int-pill live">ESDS DC</div>
-            <div class="int-pill live">SHAKTI · BHARAT</div>
-            <div class="int-pill">CDAC PARAM</div>
-          </div>
         </div>
       </div>
     </div>
