@@ -1,0 +1,283 @@
+/* ============================================================
+   Mobile overrides — Smart System of Systems
+   Applied at <= 1024px (tablet) and <= 768px (phone)
+   ============================================================ */
+
+@media (max-width: 1024px) {
+  /* Tablet: scale down 128px hero titles and tighten paddings */
+  h1.hero-title, h1.doc-title { font-size: 72px !important; }
+  h1.page-title { font-size: 64px !important; }
+  h1.display { font-size: 64px !important; }
+  .hero, .matrix-section, .doc-masthead, .doc-toc,
+  .layer-section, .planes-section, .composition,
+  .role-body, .role-title-card, .body-section,
+  .manifesto, .statement, .press-section,
+  .cap-brief-header, .cap-theatre, .cap-composed,
+  .cap-signature, .cap-outcomes, .closing-cta,
+  .threat-block, .response-block, .platform-title-card,
+  .platform-body, .field-strip, .system-overview,
+  .architecture, .specs, .mission, .join, .footer,
+  .form-left, .form-right, .process-section,
+  .section-break, .conviction, .adr-header, .page-hero {
+    padding-left: 32px !important;
+    padding-right: 32px !important;
+  }
+}
+
+@media (max-width: 768px) {
+  /* ============================================================
+     Global resets
+     ============================================================ */
+  html, body { overflow-x: hidden; }
+  .badge { font-size: 9px !important; padding: 6px 10px !important; bottom: 12px !important; right: 12px !important; }
+
+  /* ============================================================
+     Top utility bar — simplify, hide right side
+     ============================================================ */
+  .util {
+    padding: 8px 16px !important;
+    font-size: 9px !important;
+    flex-wrap: wrap !important;
+    gap: 8px !important;
+  }
+  .util-left { gap: 12px !important; flex-wrap: wrap !important; }
+  .util > *:not(.util-left):not(:first-child) { display: none !important; }
+
+  /* ============================================================
+     Main nav — stack, hide CTA text, smaller logo
+     ============================================================ */
+  .nav {
+    flex-wrap: wrap !important;
+    padding: 12px 16px !important;
+    gap: 10px !important;
+  }
+  .nav-mark { font-size: 13px !important; }
+  .nav-mark svg { width: 24px !important; height: 24px !important; }
+  .nav-mark span { font-size: 11px !important; }
+  .nav-links {
+    order: 3 !important;
+    width: 100% !important;
+    gap: 14px !important;
+    font-size: 11px !important;
+    overflow-x: auto !important;
+    white-space: nowrap !important;
+    padding-bottom: 4px !important;
+    border-top: 1px solid var(--rule);
+    padding-top: 10px !important;
+    -webkit-overflow-scrolling: touch;
+  }
+  .nav-links::-webkit-scrollbar { display: none; }
+  .nav-cta { font-size: 10px !important; padding: 8px 12px !important; }
+
+  /* ============================================================
+     Common sections — collapse paddings
+     ============================================================ */
+  .hero, .matrix-section, .doc-masthead, .doc-toc,
+  .layer-section, .planes-section, .composition,
+  .role-body, .role-title-card, .body-section,
+  .manifesto, .statement, .press-section,
+  .cap-brief-header, .cap-theatre, .cap-composed,
+  .cap-signature, .cap-outcomes, .closing-cta,
+  .threat-block, .response-block, .platform-title-card,
+  .platform-body, .field-strip, .system-overview,
+  .architecture, .specs, .mission, .join, .footer,
+  .form-left, .form-right, .process-section,
+  .section-break, .conviction, .adr-header, .page-hero {
+    padding: 48px 20px !important;
+  }
+
+  /* ============================================================
+     Display typography — shrink everything
+     ============================================================ */
+  h1.display { font-size: 44px !important; line-height: 0.95 !important; }
+  h1.hero-title, h1.doc-title { font-size: 44px !important; line-height: 0.95 !important; }
+  h1.page-title { font-size: 40px !important; line-height: 0.95 !important; }
+  .arch-title, .specs-title { font-size: 32px !important; }
+  .mission-text { font-size: 24px !important; }
+  .arch-text h3 { font-size: 26px !important; }
+  .break-quote { font-size: 28px !important; }
+  .join-title { font-size: 36px !important; }
+  .closing-cta h3 { font-size: 32px !important; }
+  .section-break h3 { font-size: 32px !important; }
+  .cap-brief-content h2,
+  .platform-headline-block h2,
+  .role-headline-block h2,
+  .adr-title-area h2 { font-size: 36px !important; line-height: 1 !important; }
+
+  /* ============================================================
+     Hero grids — stack
+     ============================================================ */
+  .hero-grid {
+    grid-template-columns: 1fr !important;
+    gap: 32px !important;
+    min-height: auto !important;
+    margin-bottom: 32px !important;
+  }
+  .hero-text {
+    padding: 32px 20px !important;
+    border-right: none !important;
+    border-bottom: 1px solid var(--rule);
+  }
+  .hero-meta-top { margin-bottom: 24px !important; flex-wrap: wrap !important; gap: 8px !important; }
+  .hero-bottom { grid-template-columns: 1fr !important; gap: 24px !important; margin-top: 32px !important; }
+  .hero-image { min-height: 240px !important; }
+  .hero-eyebrow { flex-wrap: wrap !important; gap: 8px !important; }
+
+  /* ============================================================
+     Pillars (4-col on home) — stack into 1 col
+     ============================================================ */
+  .pillars { grid-template-columns: 1fr !important; }
+  .pillar { border-right: none !important; border-bottom: 1px solid var(--rule); padding: 24px 20px !important; }
+  .pillar:last-child { border-bottom: none; }
+  .pillar-title { font-size: 18px !important; }
+
+  /* ============================================================
+     Mission section
+     ============================================================ */
+  .mission-grid { grid-template-columns: 1fr !important; gap: 24px !important; }
+
+  /* ============================================================
+     Architecture diagram — keep SVG but allow shrink
+     ============================================================ */
+  .arch-head, .specs-head, .arch-grid {
+    display: block !important;
+    margin-bottom: 32px !important;
+  }
+  .arch-grid { display: grid !important; grid-template-columns: 1fr !important; gap: 32px !important; }
+  .arch-title, .specs-title { margin-bottom: 12px !important; }
+  .arch-svg { padding: 16px !important; }
+  .arch-text .legend { grid-template-columns: 1fr !important; }
+
+  /* ============================================================
+     Specs grid (3-col) — single col
+     ============================================================ */
+  .specs-grid { grid-template-columns: 1fr !important; }
+  .spec-cell { border-right: none !important; padding: 28px 20px !important; }
+
+  /* ============================================================
+     Cinematic break — reduce height
+     ============================================================ */
+  .break { height: 60vh !important; }
+  .break-content { left: 20px !important; right: 20px !important; max-width: 100% !important; }
+
+  /* ============================================================
+     Footer — stack columns
+     ============================================================ */
+  .footer { padding: 40px 20px 24px !important; }
+  .footer-top { grid-template-columns: 1fr !important; gap: 32px !important; padding-bottom: 32px !important; }
+  .footer-mark { font-size: 22px !important; }
+  .footer-bottom { flex-direction: column !important; gap: 12px !important; align-items: flex-start !important; }
+
+  /* ============================================================
+     CAPABILITIES PAGE
+     ============================================================ */
+  .cap-index-grid,
+  .adr-index-grid,
+  .platform-index-grid,
+  .role-index-grid { grid-template-columns: 1fr !important; gap: 8px !important; }
+  .cap-brief-header { grid-template-columns: 1fr !important; gap: 24px !important; min-height: auto !important; }
+  .cap-meta-strip,
+  .meta-strip,
+  .role-meta-strip { grid-template-columns: 1fr 1fr !important; }
+  .cap-meta-strip > *,
+  .meta-strip > *,
+  .role-meta-strip > * { padding: 16px 20px !important; border-bottom: 1px solid #2A2A2A; }
+  .theatre-legend { grid-template-columns: 1fr 1fr !important; }
+  .cap-tr { grid-template-columns: 1fr !important; }
+  .threat-block, .response-block { border-right: none !important; }
+  .platform-badges { grid-template-columns: 1fr 1fr !important; }
+  .sig-grid { grid-template-columns: 1fr 1fr !important; }
+  .out-wrap { grid-template-columns: 1fr !important; gap: 24px !important; }
+  .out-list li { grid-template-columns: 60px 1fr !important; gap: 16px !important; }
+
+  /* ============================================================
+     ARCHITECTURE PAGE
+     ============================================================ */
+  .doc-meta-top { grid-template-columns: 1fr 1fr !important; gap: 16px !important; }
+  .toc-list li {
+    grid-template-columns: 1fr !important;
+    gap: 6px !important;
+    font-size: 12px !important;
+    padding: 14px 0 !important;
+  }
+  .adr-header-grid { grid-template-columns: 1fr !important; gap: 20px !important; }
+  .adr-section { grid-template-columns: 1fr !important; gap: 12px !important; padding: 24px 0 !important; }
+  .alt-list li { grid-template-columns: 40px 1fr !important; gap: 12px !important; }
+  .cons-grid { grid-template-columns: 1fr !important; }
+  .layer-grid { grid-template-columns: 1fr !important; gap: 32px !important; }
+  .layer, .trust-boundary {
+    grid-template-columns: 60px 1fr !important;
+    gap: 8px !important;
+    font-size: 10px !important;
+  }
+  .layer > *:nth-child(3),
+  .trust-boundary > *:nth-child(3) { grid-column: 1 / -1; }
+
+  /* ============================================================
+     PLATFORMS PAGE
+     ============================================================ */
+  .platform-title-card { grid-template-columns: 1fr !important; gap: 24px !important; min-height: auto !important; padding: 48px 20px !important; }
+  .body-grid { grid-template-columns: 1fr !important; gap: 32px !important; margin-bottom: 32px !important; }
+  .modules-row { grid-template-columns: 1fr 1fr !important; }
+  .cap-int-grid { grid-template-columns: 1fr !important; gap: 20px !important; }
+  .int-grid { grid-template-columns: 1fr !important; }
+  .field-strip { grid-template-columns: 1fr !important; gap: 24px !important; }
+  .comp-grid { grid-template-columns: 1fr !important; gap: 24px !important; }
+  .comp-cards { grid-template-columns: 1fr !important; }
+  .schematic-card .legend { grid-template-columns: 1fr !important; }
+
+  /* ============================================================
+     CAREERS PAGE
+     ============================================================ */
+  .role-title-card { grid-template-columns: 1fr !important; gap: 24px !important; min-height: auto !important; }
+  .role-cta-bar { grid-template-columns: 1fr !important; gap: 16px !important; padding: 24px 20px !important; }
+  .process-grid { grid-template-columns: 1fr !important; }
+  .process-promise { grid-template-columns: 1fr !important; gap: 24px !important; padding: 32px 20px !important; }
+  .rubric li { grid-template-columns: 18px 1fr !important; }
+
+  /* ============================================================
+     ABOUT / NEWSROOM / MISSION PAGES
+     ============================================================ */
+  .page-hero { grid-template-columns: 1fr !important; gap: 24px !important; }
+  .body-section { grid-template-columns: 1fr !important; gap: 24px !important; }
+  .principles { grid-template-columns: 1fr !important; }
+  .article {
+    grid-template-columns: 1fr !important;
+    gap: 8px !important;
+    padding: 24px 0 !important;
+  }
+  .press-grid { grid-template-columns: 1fr !important; gap: 24px !important; }
+  .manifesto-grid { grid-template-columns: 1fr !important; gap: 32px !important; }
+  .conviction-grid { grid-template-columns: 1fr !important; }
+
+  /* ============================================================
+     BRIEFING PAGE — form
+     ============================================================ */
+  .form-layout { grid-template-columns: 1fr !important; min-height: auto !important; }
+  .form-left { border-right: none !important; border-bottom: 1px solid var(--rule); padding: 48px 20px !important; }
+  .form-row.split { grid-template-columns: 1fr !important; gap: 16px !important; }
+  .meta-block { grid-template-columns: 1fr 1fr !important; gap: 16px !important; }
+}
+
+@media (max-width: 480px) {
+  h1.display { font-size: 36px !important; }
+  h1.hero-title, h1.doc-title { font-size: 36px !important; }
+  h1.page-title { font-size: 32px !important; }
+  .cap-brief-content h2,
+  .platform-headline-block h2,
+  .role-headline-block h2,
+  .adr-title-area h2 { font-size: 28px !important; }
+  .arch-title, .specs-title { font-size: 26px !important; }
+  .join-title { font-size: 28px !important; }
+  .closing-cta h3 { font-size: 26px !important; }
+  .section-break h3 { font-size: 26px !important; }
+  .platform-badges,
+  .sig-grid,
+  .modules-row,
+  .cap-meta-strip,
+  .meta-strip,
+  .role-meta-strip,
+  .theatre-legend { grid-template-columns: 1fr !important; }
+  .meta-block { grid-template-columns: 1fr !important; }
+  .doc-meta-top { grid-template-columns: 1fr !important; }
+}
