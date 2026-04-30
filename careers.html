@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Careers — Smart System of Systems</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600&family=Fraunces:opsz,wght@9..144,300;9..144,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{--paper:#F5F3EE;--paper-2:#ECE9E1;--ink:#0A0A0A;--ink-2:#3A3A38;--ink-3:#7A7670;--rule:#1A1A1A;--rule-soft:#C8C4B8;--rust:#B14A22}
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  html,body{background:var(--paper);color:var(--ink);font-family:'Inter',sans-serif;-webkit-font-smoothing:antialiased;line-height:1.5}
+  a{color:inherit}
+
+  .util{display:flex;justify-content:space-between;align-items:center;padding:10px 32px;background:var(--ink);color:var(--paper);font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.05em}
+  .util-left{display:flex;gap:32px;align-items:center}
+  .util-dot{width:6px;height:6px;background:var(--rust);border-radius:50%;display:inline-block;margin-right:8px;animation:pulse 2.4s ease-in-out infinite}
+  @keyframes pulse{0%,100%{opacity:1}50%{opacity:0.4}}
+
+  .nav{display:flex;justify-content:space-between;align-items:center;padding:20px 32px;border-bottom:1px solid var(--rule)}
+  .nav-mark{font-family:'Inter Tight',sans-serif;font-weight:800;font-size:18px;letter-spacing:-0.02em;text-transform:uppercase}
+  .nav-mark a{text-decoration:none;color:inherit}
+  .nav-mark span{color:var(--rust)}
+  .nav-links{display:flex;gap:36px;font-size:13px;font-weight:500;text-transform:uppercase;letter-spacing:0.05em}
+  .nav-links a{color:inherit;text-decoration:none;transition:color 0.2s}
+  .nav-links a:hover{color:var(--rust)}
+  .nav-cta{background:var(--ink);color:var(--paper);padding:10px 18px;font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:0.08em;text-decoration:none;display:inline-block}
+  .nav-cta:hover{background:var(--rust)}
+
+  .breadcrumb{padding:24px 56px;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.08em;text-transform:uppercase;color:var(--ink-3);border-bottom:1px solid var(--rule-soft)}
+  .breadcrumb a{color:inherit;text-decoration:none}
+  .breadcrumb a:hover{color:var(--rust)}
+  .breadcrumb .sep{margin:0 12px;color:var(--rule-soft)}
+  .breadcrumb .current{color:var(--ink)}
+
+  /* Hero */
+  .hero{padding:120px 56px 96px;border-bottom:1px solid var(--rule);max-width:1400px;margin:0 auto}
+  .hero-eyebrow{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--rust);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:40px;display:flex;align-items:center;gap:14px}
+  .hero-eyebrow::before{content:'';width:32px;height:1px;background:var(--rust)}
+  .hero-grid{display:grid;grid-template-columns:1.3fr 1fr;gap:96px;align-items:end}
+  h1.hero-title{font-family:'Inter Tight',sans-serif;font-weight:700;font-size:128px;line-height:0.9;letter-spacing:-0.045em;text-transform:uppercase}
+  h1.hero-title .accent{color:var(--rust)}
+  h1.hero-title em{font-family:'Fraunces',serif;font-style:italic;font-weight:300;text-transform:none;letter-spacing:-0.02em}
+  .hero-right p{font-size:17px;line-height:1.65;color:var(--ink-2);margin-bottom:18px;max-width:480px}
+  .hero-right p strong{color:var(--ink);font-weight:500}
+
+  /* Role index — sticky */
+  .role-index{background:var(--ink);color:var(--paper);padding:24px 56px;position:sticky;top:0;z-index:10;border-bottom:1px solid #2A2A2A}
+  .role-index-grid{display:grid;grid-template-columns:auto repeat(5,1fr);gap:24px;align-items:center}
+  .role-index-label{font-family:'JetBrains Mono',monospace;font-size:11px;color:#888;letter-spacing:0.08em;text-transform:uppercase}
+  .role-index-link{display:block;text-decoration:none;color:#999;padding:8px 0;border-top:1px solid #2A2A2A;transition:color 0.2s,border-color 0.2s}
+  .role-index-link:hover{color:var(--rust);border-top-color:var(--rust)}
+  .role-index-link .num{font-family:'Fraunces',serif;font-style:italic;font-size:14px;color:var(--rust);margin-right:8px}
+  .role-index-link .name{font-family:'Inter Tight',sans-serif;font-weight:600;font-size:13px;color:var(--paper);text-transform:uppercase;letter-spacing:0.02em;display:inline}
+
+  /* Role title card — black slab */
+  .role{scroll-margin-top:80px}
+  .role-title-card{padding:96px 56px 0;background:var(--ink);color:var(--paper);position:relative;display:grid;grid-template-columns:320px 1fr;gap:64px;align-items:center;min-height:64vh}
+  .role-numeral{font-family:'Fraunces',serif;font-style:italic;font-weight:300;font-size:240px;line-height:0.85;color:var(--rust);letter-spacing:-0.04em;align-self:start}
+  .role-headline-block{padding-bottom:96px}
+  .role-headline-block .eyebrow{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--rust);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:24px;display:flex;align-items:center;gap:14px}
+  .role-headline-block .eyebrow::before{content:'';width:32px;height:1px;background:var(--rust)}
+  .role-headline-block h2{font-family:'Inter Tight',sans-serif;font-weight:700;font-size:64px;line-height:0.95;letter-spacing:-0.035em;text-transform:uppercase;margin-bottom:28px}
+  .role-headline-block .tagline{font-family:'Fraunces',serif;font-style:italic;font-weight:300;font-size:22px;color:#CCC;line-height:1.4;max-width:680px}
+  .role-meta-strip{display:grid;grid-template-columns:repeat(4,1fr);font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.05em;text-transform:uppercase;border-top:1px solid #2A2A2A;background:var(--ink);color:var(--paper)}
+  .role-meta-strip > div{padding:18px 24px;border-right:1px solid #2A2A2A}
+  .role-meta-strip > div:last-child{border-right:none}
+  .role-meta-strip .label{color:#888;display:block;margin-bottom:4px}
+  .role-meta-strip .value{color:var(--paper)}
+  .role-meta-strip .value.rust{color:var(--rust)}
+
+  /* Role body */
+  .role-body{padding:96px 56px;display:grid;grid-template-columns:1.1fr 0.9fr;gap:80px;max-width:1400px;margin:0 auto}
+  .role-body-left h3{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.08em;text-transform:uppercase;color:var(--rust);margin-bottom:18px;display:flex;align-items:center;gap:12px}
+  .role-body-left h3::before{content:'';width:24px;height:1px;background:var(--rust)}
+  .role-body-left .mission{font-size:19px;line-height:1.65;color:var(--ink);max-width:560px;margin-bottom:48px}
+  .role-body-left .mission strong{font-weight:500}
+  .problem-block{background:var(--paper-2);border-left:3px solid var(--rust);padding:32px;margin-top:32px}
+  .problem-block .label{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.08em;text-transform:uppercase;color:var(--ink-3);margin-bottom:18px}
+  .problem-block p{font-family:'Fraunces',serif;font-style:italic;font-weight:300;font-size:20px;line-height:1.5;color:var(--ink)}
+
+  .role-body-right{display:grid;gap:20px;align-content:start}
+  .rubric{border:1px solid var(--rule);padding:28px}
+  .rubric h4{font-family:'Inter Tight',sans-serif;font-weight:700;font-size:18px;text-transform:uppercase;letter-spacing:-0.01em;margin-bottom:18px;display:flex;justify-content:space-between;align-items:baseline}
+  .rubric h4 .count{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--rust);font-weight:400;letter-spacing:0.05em}
+  .rubric ul{list-style:none}
+  .rubric li{display:grid;grid-template-columns:18px 1fr;gap:10px;padding:10px 0;font-size:14px;line-height:1.55;color:var(--ink-2);border-bottom:1px solid var(--rule-soft)}
+  .rubric li:last-child{border-bottom:none;padding-bottom:0}
+  .rubric li::before{content:'→';color:var(--rust);font-family:'JetBrains Mono',monospace;font-size:12px;display:inline-block;line-height:1.55}
+  .rubric li strong{color:var(--ink);font-weight:500}
+
+  /* Apply CTA bar */
+  .role-cta-bar{display:grid;grid-template-columns:1fr auto;gap:48px;align-items:center;padding:36px 56px;background:var(--paper-2);border-top:1px solid var(--rule);border-bottom:1px solid var(--rule)}
+  .role-cta-text{font-family:'Inter Tight',sans-serif;font-weight:600;font-size:24px;letter-spacing:-0.015em;line-height:1.2}
+  .role-cta-text .accent{color:var(--rust)}
+  .role-cta-button{background:var(--ink);color:var(--paper);padding:18px 32px;font-family:'JetBrains Mono',monospace;font-size:13px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;text-decoration:none;transition:background 0.2s}
+  .role-cta-button:hover{background:var(--rust)}
+
+  /* Process section */
+  .process-section{padding:120px 56px;border-bottom:1px solid var(--rule)}
+  .process-head{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:64px;border-bottom:1px solid var(--rule);padding-bottom:24px;max-width:1400px;margin-left:auto;margin-right:auto}
+  .process-title{font-family:'Inter Tight',sans-serif;font-weight:700;font-size:48px;text-transform:uppercase;letter-spacing:-0.03em}
+  .process-title em{font-family:'Fraunces',serif;font-style:italic;font-weight:300;text-transform:none;letter-spacing:-0.015em}
+  .process-meta{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--ink-3);letter-spacing:0.05em;text-transform:uppercase}
+  .process-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border-top:1px solid var(--rule);max-width:1400px;margin:0 auto}
+  .process-step{padding:32px;border-right:1px solid var(--rule);border-bottom:1px solid var(--rule)}
+  .process-step:last-child{border-right:none}
+  .process-step .num{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--rust);letter-spacing:0.05em;margin-bottom:18px}
+  .process-step h5{font-family:'Inter Tight',sans-serif;font-weight:700;font-size:22px;text-transform:uppercase;letter-spacing:-0.015em;margin-bottom:12px}
+  .process-step p{font-size:14px;line-height:1.6;color:var(--ink-2)}
+  .process-step .timing{margin-top:18px;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.08em;text-transform:uppercase;color:var(--ink-3)}
+
+  .process-promise{margin-top:80px;padding:48px;background:var(--ink);color:var(--paper);max-width:1400px;margin-left:auto;margin-right:auto;display:grid;grid-template-columns:1fr 2fr;gap:48px;align-items:center}
+  .process-promise .label{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.08em;text-transform:uppercase;color:#888}
+  .process-promise .text{font-family:'Inter Tight',sans-serif;font-weight:500;font-size:28px;line-height:1.2;letter-spacing:-0.02em}
+  .process-promise .text .accent{color:var(--rust)}
+
+  /* Don't see your role */
+  .closing-cta{padding:96px 56px;text-align:center;border-bottom:1px solid var(--rule)}
+  .closing-cta-eyebrow{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--rust);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:32px}
+  .closing-cta h3{font-family:'Inter Tight',sans-serif;font-weight:700;font-size:64px;line-height:1;text-transform:uppercase;letter-spacing:-0.035em;max-width:900px;margin:0 auto 24px}
+  .closing-cta h3 em{font-family:'Fraunces',serif;font-style:italic;font-weight:300;text-transform:none;letter-spacing:-0.015em}
+  .closing-cta p{font-size:17px;color:var(--ink-2);max-width:560px;margin:0 auto 40px;line-height:1.6}
+  .closing-cta a{display:inline-block;background:var(--ink);color:var(--paper);padding:18px 32px;font-family:'JetBrains Mono',monospace;font-size:13px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;text-decoration:none}
+  .closing-cta a:hover{background:var(--rust)}
+
+  .footer{background:var(--ink);color:var(--paper);padding:64px 56px 32px}
+  .footer-top{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:48px;padding-bottom:48px;border-bottom:1px solid #2A2A2A}
+  .footer-mark{font-family:'Inter Tight',sans-serif;font-weight:800;font-size:32px;text-transform:uppercase;letter-spacing:-0.02em;line-height:1}
+  .footer-mark a{text-decoration:none;color:inherit}
+  .footer-mark span{color:var(--rust)}
+  .footer-tag{font-family:'JetBrains Mono',monospace;font-size:11px;color:#888;margin-top:14px;letter-spacing:0.05em;text-transform:uppercase}
+  .footer-col h4{font-family:'JetBrains Mono',monospace;font-size:11px;color:#888;letter-spacing:0.08em;text-transform:uppercase;margin-bottom:18px;font-weight:500}
+  .footer-col a{display:block;color:var(--paper);text-decoration:none;font-size:14px;padding:6px 0;font-weight:500}
+  .footer-col a:hover{color:var(--rust)}
+  .footer-bottom{display:flex;justify-content:space-between;font-family:'JetBrains Mono',monospace;font-size:11px;color:#666;letter-spacing:0.08em;text-transform:uppercase;padding-top:24px}
+</style>
+</head>
+<body>
+  <nav class="nav">
+    <div class="nav-mark"><a href="design-hybrid.html" style="text-decoration:none;color:inherit;display:flex;align-items:center;gap:14px"><svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="12" height="12" x="0" y="0" fill="#B14A22"/><rect width="12" height="12" x="14" y="0" fill="#0A0A0A"/><rect width="12" height="12" x="0" y="14" fill="#0A0A0A"/><rect width="12" height="12" x="14" y="14" fill="#0A0A0A"/><rect width="4" height="4" x="18" y="18" fill="#B14A22"/></svg><span>SMART SYSTEM OF SYSTEMS</span></a></div>
+    <div class="nav-links">
+      <a href="platforms.html">Platforms</a><a href="capabilities.html">Capabilities</a><a href="architecture.html">Architecture</a><a href="mission.html">Mission</a><a href="careers.html">Careers</a>
+    </div>
+    <a class="nav-cta" href="briefing.html">REQUEST BRIEFING →</a>
+  </nav>
+
+  <div class="breadcrumb">
+    <a href="design-hybrid.html">Home</a>
+    <span class="sep">/</span>
+    <span class="current">Careers</span>
+  </div>
+
+  <section class="hero">
+    <div class="hero-eyebrow">FIVE FOUNDING ROLES — APRIL 2026</div>
+    <div class="hero-grid">
+      <h1 class="hero-title">Build the system<br/>India needs.<br/><em>From wherever<br/>you are.</em></h1>
+      <div class="hero-right">
+        <p>Five founding roles. Open across India. <strong>Fully remote.</strong></p>
+        <p>We hire small numbers of senior people who have done the work — engineers, designers, and operators who can architect entire surfaces, not staff a function. Founding equity, deep technical scope, and the chance to design the connective intelligence beneath India's next decade of defence.</p>
+        <p>Two travel windows per quarter for in-person work. Otherwise: write, ship, deploy, from wherever you live in India.</p>
+      </div>
+    </div>
+  </section>
+
+  <nav class="role-index">
+    <div class="role-index-grid">
+      <div class="role-index-label">→ JUMP TO</div>
+      <a class="role-index-link" href="#role-01"><span class="num">i.</span><span class="name">Distributed Systems</span></a>
+      <a class="role-index-link" href="#role-02"><span class="num">ii.</span><span class="name">Applied ML</span></a>
+      <a class="role-index-link" href="#role-03"><span class="num">iii.</span><span class="name">Embedded / Edge</span></a>
+      <a class="role-index-link" href="#role-04"><span class="num">iv.</span><span class="name">Design Engineer</span></a>
+      <a class="role-index-link" href="#role-05"><span class="num">v.</span><span class="name">Programme Lead</span></a>
+    </div>
+  </nav>
+
+  <!-- ROLE 01 -->
+  <section class="role" id="role-01">
+    <div class="role-title-card">
+      <div class="role-numeral">i.</div>
+      <div class="role-headline-block">
+        <div class="eyebrow">FOUNDING ENGINEERING — FUSION</div>
+        <h2>Distributed<br/>Systems<br/>Engineer</h2>
+        <p class="tagline">Build the spine of the decision graph — the distributed system that ingests heterogeneous sensor streams under contested bandwidth and composes them into one coherent picture.</p>
+      </div>
+    </div>
+    <div class="role-meta-strip">
+      <div><span class="label">Role ID</span><span class="value">ENG · 001</span></div>
+      <div><span class="label">Location</span><span class="value rust">REMOTE · INDIA</span></div>
+      <div><span class="label">Travel</span><span class="value">2× / QUARTER</span></div>
+      <div><span class="label">Compensation</span><span class="value">SENIOR + FOUNDING EQUITY</span></div>
+    </div>
+
+    <div class="role-body">
+      <div class="role-body-left">
+        <h3>The mission</h3>
+        <p class="mission">Our decision graph is the connective tissue of the company. It receives multi-modal sensor streams from radar, EO/IR, SIGINT, and acoustic platforms — composes them into a single decision-grade picture — and continues to do so when the upstream link drops, when nodes go dark, when timing is adversarial. <strong>You will own its architecture from first principles.</strong></p>
+        <p class="mission">This is a role for someone who has been in the room for hard distributed-systems decisions before, and who is ready to make them again — this time with the consequences of getting it wrong measured in lives, not lost analytics events.</p>
+        <div class="problem-block">
+          <div class="label">A PROBLEM YOU'D JOIN US IN SOLVING</div>
+          <p>"Radar at 50 Hz, EO/IR at 25 fps, SIGINT pulses arriving asynchronously — fused on a 4 GB Jetson, with the upstream link dropping for 90 seconds. Operators downstream still need a decision-grade picture every second. How do you architect the buffering, the fusion, and the graceful downgrade?"</p>
+        </div>
+      </div>
+      <div class="role-body-right">
+        <div class="rubric">
+          <h4>You'll own <span class="count">5 SURFACES</span></h4>
+          <ul>
+            <li><span><strong>Core fusion pipeline architecture</strong> — protocol design, state replication, consistency model.</span></li>
+            <li><span><strong>Edge ↔ cloud handoff</strong> across degraded and intermittent links.</span></li>
+            <li><span><strong>Observability and replay tooling</strong> — production incidents must be reconstructable.</span></li>
+            <li><span><strong>Performance budget</strong> across all sensor ingestion paths.</span></li>
+            <li><span><strong>Mentoring</strong> the next two engineers on this team.</span></li>
+          </ul>
+        </div>
+        <div class="rubric">
+          <h4>You bring <span class="count">7+ YEARS</span></h4>
+          <ul>
+            <li><span>Production distributed systems in <strong>Rust, Go, or modern C++</strong>.</span></li>
+            <li><span>Deep familiarity with consensus, eventual consistency, CRDTs, and their trade-offs.</span></li>
+            <li><span>Comfort with low-level networking — UDP, multicast, custom protocols on lossy links.</span></li>
+            <li><span>A bias for systems that fail gracefully — <strong>degraded beats silent</strong>.</span></li>
+            <li><span>Habit of writing technical specs, not just code.</span></li>
+          </ul>
+        </div>
+        <div class="rubric">
+          <h4>Bonus signals <span class="count">OPTIONAL</span></h4>
+          <ul>
+            <li><span>Background in defence, aerospace, robotics, or autonomous vehicles.</span></li>
+            <li><span>Familiarity with tactical radio links (Link 16, MIDS) or analogous lossy military networks.</span></li>
+            <li><span>Open-source contributions to ZeroMQ, NATS, or a real-time framework.</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="role-cta-bar">
+      <div class="role-cta-text">Ready to build <span class="accent">the spine?</span> →</div>
+      <a class="role-cta-button" href="briefing.html">APPLY · ENG-001 →</a>
+    </div>
+  </section>
+
+  <!-- ROLE 02 -->
+  <section class="role" id="role-02">
+    <div class="role-title-card">
+      <div class="role-numeral">ii.</div>
+      <div class="role-headline-block">
+        <div class="eyebrow">FOUNDING ENGINEERING — AUTONOMY</div>
+        <h2>Applied ML<br/>Engineer</h2>
+        <p class="tagline">Take multi-modal model architecture from research into production — small, fast, contested-edge models that coordinate with each other and degrade gracefully under adversarial conditions.</p>
+      </div>
+    </div>
+    <div class="role-meta-strip">
+      <div><span class="label">Role ID</span><span class="value">ENG · 002</span></div>
+      <div><span class="label">Location</span><span class="value rust">REMOTE · INDIA</span></div>
+      <div><span class="label">Travel</span><span class="value">2× / QUARTER</span></div>
+      <div><span class="label">Compensation</span><span class="value">SENIOR + FOUNDING EQUITY</span></div>
+    </div>
+
+    <div class="role-body">
+      <div class="role-body-left">
+        <h3>The mission</h3>
+        <p class="mission">Our autonomy stack lives on platforms that have 4 GB of RAM, 25 W of thermal headroom, and a connection that drops every few minutes. <strong>You will design models that ship in that environment</strong> — not papers in a notebook, models in the field.</p>
+        <p class="mission">You'll make architectural decisions about on-platform inference, multi-agent coordination, and adversarial robustness. You will care about the gap between IID benchmark performance and what happens when sensors get spoofed, jammed, or simply broken.</p>
+        <div class="problem-block">
+          <div class="label">A PROBLEM YOU'D JOIN US IN SOLVING</div>
+          <p>"Twelve heterogeneous platforms — four fixed-wing, six quadcopter, two ground — each carrying its own sensor mix. Maintain coverage of a 50 km² area while one platform is lost every three minutes. No GPS. Limited inter-platform comms. How do you train it, and how do you know it works?"</p>
+        </div>
+      </div>
+      <div class="role-body-right">
+        <div class="rubric">
+          <h4>You'll own <span class="count">5 SURFACES</span></h4>
+          <ul>
+            <li><span><strong>Model architecture</strong> for on-platform inference under tight memory and power budgets.</span></li>
+            <li><span><strong>Multi-agent coordination</strong> — RL, learned policies, or hybrid classical/ML approaches.</span></li>
+            <li><span><strong>Adversarial robustness</strong> — deception, jamming, sensor spoofing.</span></li>
+            <li><span><strong>The training-to-deployment pipeline</strong> for sovereign environments — no cloud GPUs at customers.</span></li>
+            <li><span><strong>Field-relevant evaluation harness</strong> — benchmarks that predict real performance.</span></li>
+          </ul>
+        </div>
+        <div class="rubric">
+          <h4>You bring <span class="count">5+ YEARS</span></h4>
+          <ul>
+            <li><span>Shipped ML in production — <strong>not just papers, deployed</strong>.</span></li>
+            <li><span>Deep PyTorch + ONNX/TensorRT or equivalent edge runtime experience.</span></li>
+            <li><span>Strong intuition for the gap between benchmark and field performance.</span></li>
+            <li><span>Familiarity with RL, multi-agent learning, or operations-research optimisation.</span></li>
+            <li><span>Willingness to write CUDA/Triton when it matters.</span></li>
+          </ul>
+        </div>
+        <div class="rubric">
+          <h4>Bonus signals <span class="count">OPTIONAL</span></h4>
+          <ul>
+            <li><span>Prior perception work for autonomous vehicles, robotics, or aerospace.</span></li>
+            <li><span>Experience designing red-team evaluations.</span></li>
+            <li><span>NeurIPS / ICLR / RSS publications, or shipped to a defence customer.</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="role-cta-bar">
+      <div class="role-cta-text">Ready to ship <span class="accent">in the field?</span> →</div>
+      <a class="role-cta-button" href="briefing.html">APPLY · ENG-002 →</a>
+    </div>
+  </section>
+
+  <!-- ROLE 03 -->
+  <section class="role" id="role-03">
+    <div class="role-title-card">
+      <div class="role-numeral">iii.</div>
+      <div class="role-headline-block">
+        <div class="eyebrow">FOUNDING ENGINEERING — EDGE</div>
+        <h2>Embedded<br/>&amp; Edge<br/>Engineer</h2>
+        <p class="tagline">Make the system actually run. On real hardware, in the field, in vehicles and on platforms designed two decades ago. Own the edge runtime — kernel, drivers, memory, thermals, and the discipline of compute under budget.</p>
+      </div>
+    </div>
+    <div class="role-meta-strip">
+      <div><span class="label">Role ID</span><span class="value">ENG · 003</span></div>
+      <div><span class="label">Location</span><span class="value rust">REMOTE · INDIA</span></div>
+      <div><span class="label">Travel</span><span class="value">3× / QUARTER (LABS)</span></div>
+      <div><span class="label">Compensation</span><span class="value">SENIOR + FOUNDING EQUITY</span></div>
+    </div>
+
+    <div class="role-body">
+      <div class="role-body-left">
+        <h3>The mission</h3>
+        <p class="mission">Software people love to talk about edge. You will deliver edge — bring up new compute targets, debug timing on a CAN bus that hasn't been touched since 2008, hold a soldering iron, and ship a runtime that survives 55 °C in the back of a vehicle.</p>
+        <p class="mission"><strong>This is a role for someone who has scars</strong> — who has fixed silent failures at 03:00, who has read errata documents end-to-end, who knows that "it works on my desk" is a beginning, not an end.</p>
+        <div class="problem-block">
+          <div class="label">A PROBLEM YOU'D JOIN US IN SOLVING</div>
+          <p>"A platform integrator hands you a 10-year-old vehicle bus with proprietary timing, and asks you to land a 2 GB model plus our fusion runtime on a Jetson Orin NX with a 25 W thermal budget — sustained at 55 °C ambient. You have eight weeks. What's the plan?"</p>
+        </div>
+      </div>
+      <div class="role-body-right">
+        <div class="rubric">
+          <h4>You'll own <span class="count">5 SURFACES</span></h4>
+          <ul>
+            <li><span><strong>The edge runtime</strong> hosting our distributed graph and inference workloads.</span></li>
+            <li><span><strong>Bring-up</strong> for new compute targets — Jetson, Snapdragon, AMD embedded, custom SoMs.</span></li>
+            <li><span><strong>Power, thermal, and ruggedisation</strong> work alongside platform OEMs.</span></li>
+            <li><span><strong>Low-level I/O</strong> — sensor SDKs, GPIO, serial buses, time sync (PTP).</span></li>
+            <li><span>The <strong>"it doesn't work in the truck"</strong> debugging culture.</span></li>
+          </ul>
+        </div>
+        <div class="rubric">
+          <h4>You bring <span class="count">7+ YEARS</span></h4>
+          <ul>
+            <li><span>Embedded Linux or RTOS (Zephyr, FreeRTOS) <strong>in production</strong>.</span></li>
+            <li><span>Strong C / C++ / Rust on bare metal, with healthy fear of UB.</span></li>
+            <li><span>Yocto / Buildroot / OE-core experience.</span></li>
+            <li><span>Deep familiarity with at least two SoC families and their quirks.</span></li>
+            <li><span>Field debugging instincts — JTAG, traces, oscilloscope when needed.</span></li>
+          </ul>
+        </div>
+        <div class="rubric">
+          <h4>Bonus signals <span class="count">OPTIONAL</span></h4>
+          <ul>
+            <li><span>Rugged or defence platforms (MIL-STD-810, DO-178).</span></li>
+            <li><span>Linux kernel or major BSP contributions.</span></li>
+            <li><span>Hardening embedded systems against tampering and side-channels.</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="role-cta-bar">
+      <div class="role-cta-text">Ready to ship on <span class="accent">real hardware?</span> →</div>
+      <a class="role-cta-button" href="briefing.html">APPLY · ENG-003 →</a>
+    </div>
+  </section>
+
+  <!-- ROLE 04 -->
+  <section class="role" id="role-04">
+    <div class="role-title-card">
+      <div class="role-numeral">iv.</div>
+      <div class="role-headline-block">
+        <div class="eyebrow">FOUNDING ENGINEERING — DECISION</div>
+        <h2>Design<br/>Engineer</h2>
+        <p class="tagline">Build the interface operators actually use — under stress, in degraded conditions, with consequences that matter. Operators receive options, not dashboards. You will own how those options look, explain themselves, and keep a human as the decision authority.</p>
+      </div>
+    </div>
+    <div class="role-meta-strip">
+      <div><span class="label">Role ID</span><span class="value">ENG · 004</span></div>
+      <div><span class="label">Location</span><span class="value rust">REMOTE · INDIA</span></div>
+      <div><span class="label">Travel</span><span class="value">2× / QUARTER (FIELD)</span></div>
+      <div><span class="label">Compensation</span><span class="value">SENIOR + FOUNDING EQUITY</span></div>
+    </div>
+
+    <div class="role-body">
+      <div class="role-body-left">
+        <h3>The mission</h3>
+        <p class="mission">An operator at 02:00, in a darkened room, with three sensor feeds disagreeing and 1.2 seconds to commit — the screen they look at is your work. <strong>You will design and build it</strong>: the typography, the information architecture, the motion, the moment a recommendation surfaces with its provenance and confidence intact.</p>
+        <p class="mission">This role is for a designer who codes — or an engineer with real design taste. You will spend time with operators in the field. You will own the design system, the front-end stack, and the discipline of "informationally dense and still calm."</p>
+        <div class="problem-block">
+          <div class="label">A PROBLEM YOU'D JOIN US IN SOLVING</div>
+          <p>"Three sensor streams disagree. The system has 1.2 seconds to surface options to an operator who must commit. What does that screen look like, what does the operator see first, and how do they understand which option to pick — without becoming a passive forwarder of machine verdicts?"</p>
+        </div>
+      </div>
+      <div class="role-body-right">
+        <div class="rubric">
+          <h4>You'll own <span class="count">5 SURFACES</span></h4>
+          <ul>
+            <li><span><strong>The operator surface</strong> across web, native, and embedded operator stations.</span></li>
+            <li><span><strong>Information architecture</strong> for "options with provenance" — confidence and counterfactual on every recommendation.</span></li>
+            <li><span><strong>Real-time decision-graph visualisation</strong> — legible at 02:00 in a darkened room.</span></li>
+            <li><span><strong>The shared design system</strong> across all customer surfaces.</span></li>
+            <li><span><strong>Direct field work</strong> with operators — they are your second supervisors.</span></li>
+          </ul>
+        </div>
+        <div class="rubric">
+          <h4>You bring <span class="count">5+ YEARS</span></h4>
+          <ul>
+            <li><span>A designer who codes, or an engineer with a <strong>real design eye</strong>.</span></li>
+            <li><span>Production TypeScript + React + Canvas/WebGL or equivalent.</span></li>
+            <li><span>Strong taste — you can tell when something is dense and still calm.</span></li>
+            <li><span>Experience designing for high-consequence environments — medical, aviation, finance ops, defence.</span></li>
+            <li><span>A portfolio of <strong>shipped work</strong>, not just shipped features.</span></li>
+          </ul>
+        </div>
+        <div class="rubric">
+          <h4>Bonus signals <span class="count">OPTIONAL</span></h4>
+          <ul>
+            <li><span>Monitoring dashboards, control rooms, or operator tooling.</span></li>
+            <li><span>Map-heavy UIs — Mapbox, Cesium, Deck.gl.</span></li>
+            <li><span>Comfort with Figma + handoff that doesn't lose nuance.</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="role-cta-bar">
+      <div class="role-cta-text">Ready to design at <span class="accent">decision speed?</span> →</div>
+      <a class="role-cta-button" href="briefing.html">APPLY · ENG-004 →</a>
+    </div>
+  </section>
+
+  <!-- ROLE 05 -->
+  <section class="role" id="role-05">
+    <div class="role-title-card">
+      <div class="role-numeral">v.</div>
+      <div class="role-headline-block">
+        <div class="eyebrow">FOUNDING OPERATIONS — PROGRAMME</div>
+        <h2>Programme<br/>Lead</h2>
+        <p class="tagline">Be the bridge between engineering and Indian defence customers. Translate operational doctrine into product requirements; translate engineering reality into honest customer conversations. Help us win programmes that matter — and decline programmes that don't.</p>
+      </div>
+    </div>
+    <div class="role-meta-strip">
+      <div><span class="label">Role ID</span><span class="value">OPS · 001</span></div>
+      <div><span class="label">Location</span><span class="value rust">REMOTE · INDIA</span></div>
+      <div><span class="label">Travel</span><span class="value">FREQUENT — MoD &amp; PRIMES</span></div>
+      <div><span class="label">Compensation</span><span class="value">SENIOR + FOUNDING EQUITY</span></div>
+    </div>
+
+    <div class="role-body">
+      <div class="role-body-left">
+        <h3>The mission</h3>
+        <p class="mission">Defence procurement rewards the company that <strong>understands the customer's problem better than the customer can express it</strong>. You will be the person who does that understanding — sitting in MoD reviews, walking platforms with primes, returning to engineering with translated, prioritised, honest requirements.</p>
+        <p class="mission">This is a senior role for someone who has been in or alongside Indian defence for a decade or more — someone who has seen the integrator landscape from the inside, who has walked away from a deal that wasn't right, and who can do it again.</p>
+        <div class="problem-block">
+          <div class="label">A PROBLEM YOU'D JOIN US IN SOLVING</div>
+          <p>"A flagship customer wants a feature that takes six months and serves precisely one programme. The roadmap already has a competing item that serves three programmes and aligns with our core architecture. The customer is the second-largest in the company. Walk me through the conversation you'd have — internally and externally."</p>
+        </div>
+      </div>
+      <div class="role-body-right">
+        <div class="rubric">
+          <h4>You'll own <span class="count">5 SURFACES</span></h4>
+          <ul>
+            <li><span><strong>Full lifecycle</strong> of an Indian defence engagement — RFI, RFP, evaluation, deployment, sustainment.</span></li>
+            <li><span><strong>Customer trust</strong> as the default state — managed by the calendar, not by spin.</span></li>
+            <li><span><strong>The translation layer</strong> between operator language and engineering language.</span></li>
+            <li><span><strong>Joint working sessions</strong> with platform integrators and primes.</span></li>
+            <li><span><strong>The honest no</strong> — to engineering when something isn't working, to customers when something isn't ready.</span></li>
+          </ul>
+        </div>
+        <div class="rubric">
+          <h4>You bring <span class="count">10+ YEARS</span></h4>
+          <ul>
+            <li><span>Indian defence, aerospace, or tier-1 system integrator background.</span></li>
+            <li><span>Deep familiarity with MoD procurement, DPSU dynamics, and the integrator landscape.</span></li>
+            <li><span><strong>Operator empathy</strong> — preferably from time in uniform or alongside it.</span></li>
+            <li><span>Comfort with engineers who push back, and the discipline to push back yourself.</span></li>
+            <li><span>A strong moral compass — you've walked away from deals before.</span></li>
+          </ul>
+        </div>
+        <div class="rubric">
+          <h4>Bonus signals <span class="count">OPTIONAL</span></h4>
+          <ul>
+            <li><span>Service or veteran background — Army, Navy, Air Force, Coast Guard.</span></li>
+            <li><span>Prior work at HAL, BEL, BDL, DRDO, or a private prime.</span></li>
+            <li><span>Defence startup experience — not just defence prime experience.</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="role-cta-bar">
+      <div class="role-cta-text">Ready to translate <span class="accent">doctrine into product?</span> →</div>
+      <a class="role-cta-button" href="briefing.html">APPLY · OPS-001 →</a>
+    </div>
+  </section>
+
+  <!-- Process -->
+  <section class="process-section">
+    <div class="process-head">
+      <h2 class="process-title">How we <em>hire</em></h2>
+      <div class="process-meta">FOUR CONVERSATIONS · ~3 WEEKS</div>
+    </div>
+    <div class="process-grid">
+      <div class="process-step">
+        <div class="num">→ STEP 01</div>
+        <h5>The first read</h5>
+        <p>You apply with a CV or a link. A founder reads it personally — no recruiter triage. You hear back within 5 working days, yes or no, with a reason if no.</p>
+        <div class="timing">~ 5 DAYS</div>
+      </div>
+      <div class="process-step">
+        <div class="num">→ STEP 02</div>
+        <h5>Founder conversation</h5>
+        <p>A 60-minute call with a founder. We talk about your work, the role, and one of the problems you'd join us in solving. No quizzes. No riddles. We want to understand how you think.</p>
+        <div class="timing">~ 1 WEEK LATER</div>
+      </div>
+      <div class="process-step">
+        <div class="num">→ STEP 03</div>
+        <h5>Working session</h5>
+        <p>A paid 4-hour working session with the team you'd join. Real problem, real environment, your tools. We pay full day rates whether or not we hire.</p>
+        <div class="timing">~ 1 WEEK LATER</div>
+      </div>
+      <div class="process-step">
+        <div class="num">→ STEP 04</div>
+        <h5>Offer</h5>
+        <p>Compensation discussed openly — base, equity, and what each is worth in our model. Reference checks at this stage, not before. You decide on your timeline.</p>
+        <div class="timing">~ 5 DAYS</div>
+      </div>
+    </div>
+
+    <div class="process-promise">
+      <div class="label">● OUR PROMISE</div>
+      <div class="text">No recruiter spam. No take-home tests over 4 hours. No salary games. We <span class="accent">tell you what we pay</span> in the first conversation — and we expect the same honesty back.</div>
+    </div>
+  </section>
+
+  <!-- Closing -->
+  <section class="closing-cta">
+    <div class="closing-cta-eyebrow">DON'T SEE YOUR ROLE?</div>
+    <h3>If you'd <em>build</em> this with us,<br/>we want to hear from you.</h3>
+    <p>We hire ahead of need when the right person appears. If you've read this far and the work resonates — even without a posted role — write to us. Tell us what you'd own.</p>
+    <a href="briefing.html">SEND A NOTE →</a>
+  </section>
+
+  <footer class="footer">
+    <div class="footer-top">
+      <div>
+        <div class="footer-mark"><a href="design-hybrid.html" style="text-decoration:none;color:inherit;display:flex;align-items:center;gap:14px"><svg width="40" height="40" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="12" height="12" x="0" y="0" fill="#B14A22"/><rect width="12" height="12" x="14" y="0" fill="#2A2A2A"/><rect width="12" height="12" x="0" y="14" fill="#2A2A2A"/><rect width="12" height="12" x="14" y="14" fill="#2A2A2A"/><rect width="4" height="4" x="18" y="18" fill="#B14A22"/></svg><span>SMART<br/>SYSTEM OF <span>SYSTEMS</span></span></a></div>
+        <div class="footer-tag">BUILT IN INDIA · FOR THE DEFENCE OF OPEN SOCIETIES</div>
+      </div>
+      <div class="footer-col"><h4>COMPANY</h4><a href="about.html">About</a><a href="careers.html">Careers</a></div>
+      <div class="footer-col"><h4>CONTACT</h4><a href="briefing.html">Briefing</a></div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 — REGISTERED IN INDIA</span>
+      <span>EN · CLASSIFIED HANDLING</span>
+    </div>
+  </footer>
+</body>
+</html>

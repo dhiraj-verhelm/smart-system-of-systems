@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>About — Smart System of Systems</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{--paper:#F5F3EE;--paper-2:#ECE9E1;--ink:#0A0A0A;--ink-2:#3A3A38;--ink-3:#7A7670;--rule:#1A1A1A;--rule-soft:#C8C4B8;--rust:#B14A22}
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  html,body{background:var(--paper);color:var(--ink);font-family:'Inter',sans-serif;-webkit-font-smoothing:antialiased;line-height:1.5}
+  a{color:inherit}
+  .util{display:flex;justify-content:space-between;align-items:center;padding:10px 32px;background:var(--ink);color:var(--paper);font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.05em}
+  .util-left{display:flex;gap:32px;align-items:center}
+  .util-dot{width:6px;height:6px;background:var(--rust);border-radius:50%;display:inline-block;margin-right:8px;animation:pulse 2.4s ease-in-out infinite}
+  @keyframes pulse{0%,100%{opacity:1}50%{opacity:0.4}}
+  .nav{display:flex;justify-content:space-between;align-items:center;padding:20px 32px;border-bottom:1px solid var(--rule)}
+  .nav-mark{font-family:'Inter Tight',sans-serif;font-weight:800;font-size:18px;letter-spacing:-0.02em;text-transform:uppercase}
+  .nav-mark a{text-decoration:none;color:inherit}
+  .nav-mark span{color:var(--rust)}
+  .nav-links{display:flex;gap:36px;font-size:13px;font-weight:500;text-transform:uppercase;letter-spacing:0.05em}
+  .nav-links a{color:inherit;text-decoration:none;transition:color 0.2s}
+  .nav-links a:hover{color:var(--rust)}
+  .nav-cta{background:var(--ink);color:var(--paper);padding:10px 18px;font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:0.08em;text-decoration:none;display:inline-block}
+  .nav-cta:hover{background:var(--rust)}
+
+  .breadcrumb{padding:24px 56px;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.08em;text-transform:uppercase;color:var(--ink-3);border-bottom:1px solid var(--rule-soft)}
+  .breadcrumb a{color:inherit;text-decoration:none}
+  .breadcrumb a:hover{color:var(--rust)}
+  .breadcrumb .sep{margin:0 12px;color:var(--rule-soft)}
+  .breadcrumb .current{color:var(--ink)}
+
+  .page-hero{padding:96px 56px 80px;border-bottom:1px solid var(--rule);max-width:1400px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:end}
+  .page-eyebrow{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--rust);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:32px;display:flex;align-items:center;gap:14px}
+  .page-eyebrow::before{content:'';width:32px;height:1px;background:var(--rust)}
+  h1.page-title{font-family:'Inter Tight',sans-serif;font-weight:700;font-size:108px;line-height:0.92;letter-spacing:-0.045em;text-transform:uppercase}
+  h1.page-title .accent{color:var(--rust)}
+  .page-lede{font-size:18px;line-height:1.55;color:var(--ink-2);max-width:480px}
+
+  .body-section{padding:96px 56px;max-width:1200px;margin:0 auto;display:grid;grid-template-columns:200px 1fr;gap:80px}
+  .body-section + .body-section{border-top:1px solid var(--rule-soft);padding-top:96px}
+  .body-aside{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.08em;text-transform:uppercase;color:var(--ink-3);position:sticky;top:32px;align-self:start}
+  .body-aside .label{color:var(--rust);margin-bottom:8px}
+  .body-aside .num{font-family:'Inter Tight',sans-serif;font-weight:700;font-size:48px;color:var(--ink);letter-spacing:-0.03em;line-height:1;margin-bottom:8px;text-transform:none}
+  .body-content h2{font-family:'Inter Tight',sans-serif;font-weight:700;font-size:48px;text-transform:uppercase;letter-spacing:-0.03em;margin-bottom:32px;line-height:1}
+  .body-content h2 .accent{color:var(--rust)}
+  .body-content p{font-size:18px;line-height:1.65;color:var(--ink-2);max-width:640px;margin-bottom:24px}
+  .body-content p strong{color:var(--ink);font-weight:500}
+
+  .principles{display:grid;grid-template-columns:repeat(2,1fr);gap:0;border-top:1px solid var(--rule);margin-top:48px}
+  .principle{padding:32px;border-bottom:1px solid var(--rule);border-right:1px solid var(--rule)}
+  .principle:nth-child(2n){border-right:none}
+  .principle-num{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--rust);letter-spacing:0.05em;margin-bottom:14px}
+  .principle-title{font-family:'Inter Tight',sans-serif;font-weight:700;font-size:22px;text-transform:uppercase;letter-spacing:-0.015em;margin-bottom:10px}
+  .principle-body{font-size:14px;line-height:1.6;color:var(--ink-2)}
+
+  .footer{background:var(--ink);color:var(--paper);padding:64px 56px 32px}
+  .footer-top{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:48px;padding-bottom:48px;border-bottom:1px solid #2A2A2A}
+  .footer-mark{font-family:'Inter Tight',sans-serif;font-weight:800;font-size:32px;text-transform:uppercase;letter-spacing:-0.02em;line-height:1}
+  .footer-mark a{text-decoration:none;color:inherit}
+  .footer-mark span{color:var(--rust)}
+  .footer-tag{font-family:'JetBrains Mono',monospace;font-size:11px;color:#888;margin-top:14px;letter-spacing:0.05em;text-transform:uppercase}
+  .footer-col h4{font-family:'JetBrains Mono',monospace;font-size:11px;color:#888;letter-spacing:0.08em;text-transform:uppercase;margin-bottom:18px;font-weight:500}
+  .footer-col a{display:block;color:var(--paper);text-decoration:none;font-size:14px;padding:6px 0;font-weight:500}
+  .footer-col a:hover{color:var(--rust)}
+  .footer-bottom{display:flex;justify-content:space-between;font-family:'JetBrains Mono',monospace;font-size:11px;color:#666;letter-spacing:0.08em;text-transform:uppercase;padding-top:24px}
+</style>
+</head>
+<body>
+  <nav class="nav">
+    <div class="nav-mark"><a href="design-hybrid.html" style="text-decoration:none;color:inherit;display:flex;align-items:center;gap:14px"><svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="12" height="12" x="0" y="0" fill="#B14A22"/><rect width="12" height="12" x="14" y="0" fill="#0A0A0A"/><rect width="12" height="12" x="0" y="14" fill="#0A0A0A"/><rect width="12" height="12" x="14" y="14" fill="#0A0A0A"/><rect width="4" height="4" x="18" y="18" fill="#B14A22"/></svg><span>SMART SYSTEM OF SYSTEMS</span></a></div>
+    <div class="nav-links">
+      <a href="platforms.html">Platforms</a><a href="capabilities.html">Capabilities</a><a href="architecture.html">Architecture</a><a href="mission.html">Mission</a><a href="careers.html">Careers</a>
+    </div>
+    <a class="nav-cta" href="briefing.html">REQUEST BRIEFING →</a>
+  </nav>
+
+  <div class="breadcrumb">
+    <a href="design-hybrid.html">Home</a>
+    <span class="sep">/</span>
+    <span class="current">About</span>
+  </div>
+
+  <section class="page-hero">
+    <div>
+      <div class="page-eyebrow">CHAPTER 01 — THE COMPANY</div>
+      <h1 class="page-title">A sovereign<br/>defence <span class="accent">company.</span></h1>
+    </div>
+    <p class="page-lede">Founded in India to architect the connective intelligence beneath modern defence — the system that makes a fragmented force behave as one mind.</p>
+  </section>
+
+  <section class="body-section">
+    <aside class="body-aside">
+      <div class="label">§ 01</div>
+      <div class="num">01</div>
+      <div>Why we exist</div>
+    </aside>
+    <div class="body-content">
+      <h2>The decisive advantage of the next decade is <span class="accent">coherence</span> — not platforms.</h2>
+      <p>For thirty years, defence procurement has produced an archipelago of brilliance — radars that cannot speak to drones, drones that cannot speak to operators, operators forced to triangulate by hand. The result is overwhelming spend with underwhelming coherence.</p>
+      <p>We exist to build the connective tissue beneath this archipelago. <strong>Not a dashboard. Not an analytics layer. The operating substrate of sovereign defence</strong> — owned, audited, deployed under national authority.</p>
+      <p>India is not a bystander to this shift. India is its protagonist. The next generation of multi-domain coordination will be designed and shipped from Bengaluru, Hyderabad, Pune — or it will be imported, and with it the dependency that comes with imports.</p>
+    </div>
+  </section>
+
+  <section class="body-section">
+    <aside class="body-aside">
+      <div class="label">§ 02</div>
+      <div class="num">02</div>
+      <div>Principles</div>
+    </aside>
+    <div class="body-content">
+      <h2>Four operating principles.</h2>
+      <p>We are an opinionated company. Our principles shape what we build, who we hire, and what we refuse.</p>
+      <div class="principles">
+        <div class="principle">
+          <div class="principle-num">→ I</div>
+          <div class="principle-title">Sovereignty is non-negotiable</div>
+          <div class="principle-body">Models, weights, and operational data remain inside Indian jurisdiction. No exceptions, no foreign telemetry, no black boxes.</div>
+        </div>
+        <div class="principle">
+          <div class="principle-num">→ II</div>
+          <div class="principle-title">The human is the authority</div>
+          <div class="principle-body">Our systems augment operators with options, not replace them with verdicts. Provenance and counterfactual on every recommendation.</div>
+        </div>
+        <div class="principle">
+          <div class="principle-num">→ III</div>
+          <div class="principle-title">Built for contested ground</div>
+          <div class="principle-body">GPS-denied. Comms-degraded. Jammed. The system continues to coordinate — gracefully degraded, never silent.</div>
+        </div>
+        <div class="principle">
+          <div class="principle-num">→ IV</div>
+          <div class="principle-title">Compose, don't replace</div>
+          <div class="principle-body">We absorb existing fleet — legacy radars, off-the-shelf drones, allied systems. No rip-and-replace, no platform lock-in.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="body-section">
+    <aside class="body-aside">
+      <div class="label">§ 03</div>
+      <div class="num">03</div>
+      <div>Founders</div>
+    </aside>
+    <div class="body-content">
+      <h2>Built by operators, engineers, and architects.</h2>
+      <p>The founding team brings decades of experience across Indian defence, distributed systems engineering, applied machine learning, and field operations. We hire people who have done the work — not people who have only theorised about it.</p>
+      <p>If you want to know the names: <a href="briefing.html" style="border-bottom:1px solid var(--ink);text-decoration:none;color:var(--ink)">request a private briefing</a>.</p>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="footer-top">
+      <div>
+        <div class="footer-mark"><a href="design-hybrid.html" style="text-decoration:none;color:inherit;display:flex;align-items:center;gap:14px"><svg width="40" height="40" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="12" height="12" x="0" y="0" fill="#B14A22"/><rect width="12" height="12" x="14" y="0" fill="#2A2A2A"/><rect width="12" height="12" x="0" y="14" fill="#2A2A2A"/><rect width="12" height="12" x="14" y="14" fill="#2A2A2A"/><rect width="4" height="4" x="18" y="18" fill="#B14A22"/></svg><span>SMART<br/>SYSTEM OF <span>SYSTEMS</span></span></a></div>
+        <div class="footer-tag">BUILT IN INDIA · FOR THE DEFENCE OF OPEN SOCIETIES</div>
+      </div>
+      <div class="footer-col"><h4>COMPANY</h4><a href="about.html">About</a><a href="careers.html">Careers</a></div>
+      <div class="footer-col"><h4>CONTACT</h4><a href="briefing.html">Briefing</a></div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 — REGISTERED IN INDIA</span>
+      <span>EN · CLASSIFIED HANDLING</span>
+    </div>
+  </footer>
+</body>
+</html>

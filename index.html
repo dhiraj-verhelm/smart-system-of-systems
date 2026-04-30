@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Smart System of Systems — Hybrid</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600&family=Fraunces:opsz,wght@9..144,300;9..144,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#F5F3EE;
+    --paper-2:#ECE9E1;
+    --ink:#0A0A0A;
+    --ink-2:#3A3A38;
+    --ink-3:#7A7670;
+    --rule:#1A1A1A;
+    --rule-soft:#C8C4B8;
+    --rust:#B14A22;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  html,body{background:var(--paper);color:var(--ink);font-family:'Inter',sans-serif;-webkit-font-smoothing:antialiased;line-height:1.5}
+  a{color:inherit}
+  .nav-cta:hover{background:var(--rust)}
+  .badge{position:fixed;bottom:24px;right:24px;z-index:100;background:var(--ink);color:var(--paper);padding:8px 14px;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:0.05em;text-transform:uppercase}
+
+  /* Top utility bar */
+  .util{display:flex;justify-content:space-between;align-items:center;padding:10px 32px;background:var(--ink);color:var(--paper);font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.05em}
+  .util-left{display:flex;gap:32px;align-items:center}
+  .util-dot{width:6px;height:6px;background:var(--rust);border-radius:50%;display:inline-block;margin-right:8px;animation:pulse 2.4s ease-in-out infinite}
+  @keyframes pulse{0%,100%{opacity:1}50%{opacity:0.4}}
+
+  /* Main nav */
+  .nav{display:flex;justify-content:space-between;align-items:center;padding:20px 32px;border-bottom:1px solid var(--rule)}
+  .nav-mark{font-family:'Inter Tight',sans-serif;font-weight:800;font-size:18px;letter-spacing:-0.02em;text-transform:uppercase}
+  .nav-mark span{color:var(--rust)}
+  .nav-links{display:flex;gap:36px;font-size:13px;font-weight:500;text-transform:uppercase;letter-spacing:0.05em}
+  .nav-links a{color:inherit;text-decoration:none;transition:color 0.2s}
+  .nav-links a:hover{color:var(--rust)}
+  .nav-cta{background:var(--ink);color:var(--paper);padding:10px 18px;font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:0.08em;text-decoration:none;display:inline-block}
+
+  /* Hero */
+  .hero{position:relative;border-bottom:1px solid var(--rule)}
+  .hero-grid{display:grid;grid-template-columns:1fr 1fr;min-height:78vh}
+  .hero-text{padding:80px 56px 60px;display:flex;flex-direction:column;justify-content:space-between;border-right:1px solid var(--rule)}
+  .hero-meta-top{display:flex;justify-content:space-between;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.05em;color:var(--ink-3);text-transform:uppercase;margin-bottom:64px}
+  .hero-meta-top span:first-child{color:var(--rust)}
+  h1.display{font-family:'Inter Tight',sans-serif;font-weight:700;font-size:96px;line-height:0.92;letter-spacing:-0.045em;text-transform:uppercase}
+  h1.display .accent{color:var(--rust)}
+  .hero-bottom{margin-top:60px;display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:end}
+  .lede{font-size:16px;line-height:1.55;color:var(--ink-2);max-width:380px}
+  .hero-spec{font-family:'JetBrains Mono',monospace;font-size:11px;line-height:1.7;letter-spacing:0.03em;color:var(--ink-2)}
+  .hero-spec strong{color:var(--ink);font-weight:500;display:block;margin-bottom:4px;text-transform:uppercase}
+
+  .hero-image{background:url('https://images.unsplash.com/photo-1581094794329-c8112a89af12?w=1400&q=80') center/cover;position:relative;filter:grayscale(0.15) contrast(1.1)}
+  .hero-image::after{content:'';position:absolute;inset:0;background:linear-gradient(180deg,transparent 60%,rgba(10,10,10,0.4))}
+
+  /* Pillars row */
+  .pillars{display:grid;grid-template-columns:repeat(4,1fr);border-bottom:1px solid var(--rule)}
+  .pillar{padding:32px;border-right:1px solid var(--rule);transition:background 0.2s}
+  .pillar:last-child{border-right:none}
+  .pillar:hover{background:var(--paper-2)}
+  .pillar-num{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--rust);letter-spacing:0.05em;margin-bottom:14px}
+  .pillar-title{font-family:'Inter Tight',sans-serif;font-weight:700;font-size:20px;text-transform:uppercase;letter-spacing:-0.01em;margin-bottom:10px}
+  .pillar-body{font-size:13px;line-height:1.55;color:var(--ink-2)}
+
+  /* Mission section — black slab */
+  .mission{background:var(--ink);color:var(--paper);padding:120px 56px;border-bottom:1px solid var(--rule)}
+  .mission-grid{display:grid;grid-template-columns:1fr 2fr;gap:80px;max-width:1400px;margin:0 auto}
+  .mission-label{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.08em;text-transform:uppercase;color:#888}
+  .mission-label .dot{color:var(--rust)}
+  .mission-text{font-family:'Inter Tight',sans-serif;font-weight:500;font-size:42px;line-height:1.15;letter-spacing:-0.025em}
+  .mission-text .accent{color:var(--rust)}
+
+  /* Architecture diagram — black-ink line drawing on paper, borrowed from C */
+  .architecture{padding:120px 56px;border-bottom:1px solid var(--rule);background:var(--paper-2)}
+  .arch-head{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:64px;border-bottom:1px solid var(--rule);padding-bottom:24px;max-width:1400px;margin-left:auto;margin-right:auto}
+  .arch-title{font-family:'Inter Tight',sans-serif;font-weight:700;font-size:48px;text-transform:uppercase;letter-spacing:-0.03em}
+  .arch-meta{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--ink-3);letter-spacing:0.05em;text-transform:uppercase}
+  .arch-grid{display:grid;grid-template-columns:1fr 1.2fr;gap:80px;max-width:1400px;margin:0 auto;align-items:center}
+  .arch-text .figref{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.08em;color:var(--rust);text-transform:uppercase;margin-bottom:24px}
+  .arch-text h3{font-family:'Inter Tight',sans-serif;font-weight:700;font-size:40px;line-height:1.05;letter-spacing:-0.025em;text-transform:uppercase;margin-bottom:24px}
+  .arch-text p{font-size:16px;line-height:1.65;color:var(--ink-2);max-width:480px;margin-bottom:24px}
+  .arch-text .legend{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.05em;text-transform:uppercase;color:var(--ink-2);display:grid;grid-template-columns:1fr 1fr;gap:8px 24px;margin-top:32px;padding-top:24px;border-top:1px solid var(--rule-soft)}
+  .legend-item{display:flex;align-items:center;gap:8px}
+  .legend-swatch{width:10px;height:10px;border:1px solid var(--ink)}
+  .legend-swatch.rust{background:var(--rust);border-color:var(--rust)}
+  .arch-svg{background:var(--paper);border:1px solid var(--rule);padding:32px}
+  .arch-svg svg{width:100%;height:auto;display:block}
+
+  /* Specs / capability grid */
+  .specs{padding:96px 56px}
+  .specs-head{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:64px;border-bottom:1px solid var(--rule);padding-bottom:24px}
+  .specs-title{font-family:'Inter Tight',sans-serif;font-weight:700;font-size:48px;text-transform:uppercase;letter-spacing:-0.03em}
+  .specs-meta{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--ink-3);letter-spacing:0.05em;text-transform:uppercase}
+  .specs-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:0;border-top:1px solid var(--rule)}
+  .spec-cell{padding:40px 32px;border-bottom:1px solid var(--rule);border-right:1px solid var(--rule);transition:background 0.2s}
+  .spec-cell:nth-child(3n){border-right:none}
+  .spec-cell:hover{background:var(--paper-2)}
+  .spec-id{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--rust);letter-spacing:0.05em;margin-bottom:32px;display:flex;justify-content:space-between}
+  .spec-name{font-family:'Inter Tight',sans-serif;font-weight:600;font-size:22px;text-transform:uppercase;letter-spacing:-0.015em;margin-bottom:14px}
+  .spec-desc{font-size:14px;line-height:1.6;color:var(--ink-2)}
+
+  /* Cinematic landscape break — Helsing borrow, Anduril overlay */
+  .break{height:88vh;background:url('https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=2400&q=80') center/cover;filter:grayscale(0.15) contrast(1.05);position:relative;border-bottom:1px solid var(--rule)}
+  .break::before{content:'';position:absolute;inset:0;background:linear-gradient(90deg,rgba(10,10,10,0.55) 0%,rgba(10,10,10,0.1) 55%,transparent 80%)}
+  .break-content{position:absolute;top:50%;left:56px;transform:translateY(-50%);color:var(--paper);max-width:680px;z-index:2}
+  .break-eyebrow{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.1em;text-transform:uppercase;margin-bottom:32px;display:flex;align-items:center;gap:14px}
+  .break-eyebrow::before{content:'';width:32px;height:1px;background:var(--rust)}
+  .break-quote{font-family:'Inter Tight',sans-serif;font-weight:500;font-size:48px;line-height:1.1;text-transform:uppercase;letter-spacing:-0.03em;margin-bottom:32px}
+  .break-quote .accent{color:var(--rust)}
+  .break-attr{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:rgba(245,243,238,0.7)}
+
+  /* Join CTA */
+  .join{padding:120px 56px;border-bottom:1px solid var(--rule);text-align:center}
+  .join-eyebrow{font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:0.1em;text-transform:uppercase;color:var(--rust);margin-bottom:32px}
+  .join-title{font-family:'Inter Tight',sans-serif;font-weight:700;font-size:80px;line-height:0.95;text-transform:uppercase;letter-spacing:-0.04em;max-width:1100px;margin:0 auto 48px}
+  .join-cta{display:inline-block;background:var(--ink);color:var(--paper);padding:18px 32px;font-family:'JetBrains Mono',monospace;font-size:13px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;text-decoration:none}
+
+  /* Footer */
+  .footer{background:var(--ink);color:var(--paper);padding:64px 56px 32px}
+  .footer-top{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:48px;padding-bottom:48px;border-bottom:1px solid #2A2A2A}
+  .footer-mark{font-family:'Inter Tight',sans-serif;font-weight:800;font-size:32px;text-transform:uppercase;letter-spacing:-0.02em;line-height:1}
+  .footer-mark span{color:var(--rust)}
+  .footer-tag{font-family:'JetBrains Mono',monospace;font-size:11px;color:#888;margin-top:14px;letter-spacing:0.05em;text-transform:uppercase}
+  .footer-col h4{font-family:'JetBrains Mono',monospace;font-size:11px;color:#888;letter-spacing:0.08em;text-transform:uppercase;margin-bottom:18px;font-weight:500}
+  .footer-col a{display:block;color:var(--paper);text-decoration:none;font-size:14px;padding:6px 0;font-weight:500}
+  .footer-col a:hover{color:var(--rust)}
+  .footer-bottom{display:flex;justify-content:space-between;font-family:'JetBrains Mono',monospace;font-size:11px;color:#666;letter-spacing:0.08em;text-transform:uppercase;padding-top:24px}
+</style>
+</head>
+<body>
+  <div class="badge">HYBRID · v1</div>
+
+  <nav class="nav">
+    <div class="nav-mark"><a href="design-hybrid.html" style="text-decoration:none;color:inherit;display:flex;align-items:center;gap:14px"><svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="12" height="12" x="0" y="0" fill="#B14A22"/><rect width="12" height="12" x="14" y="0" fill="#0A0A0A"/><rect width="12" height="12" x="0" y="14" fill="#0A0A0A"/><rect width="12" height="12" x="14" y="14" fill="#0A0A0A"/><rect width="4" height="4" x="18" y="18" fill="#B14A22"/></svg><span>SMART SYSTEM OF SYSTEMS</span></a></div>
+    <div class="nav-links">
+      <a href="platforms.html">Platforms</a><a href="capabilities.html">Capabilities</a><a href="architecture.html">Architecture</a><a href="mission.html">Mission</a><a href="careers.html">Careers</a>
+    </div>
+    <a class="nav-cta" href="briefing.html">REQUEST BRIEFING →</a>
+  </nav>
+
+  <section class="hero">
+    <div class="hero-grid">
+      <div class="hero-text">
+        <div>
+          <div class="hero-meta-top">
+            <span>● 001 / DOCTRINE</span>
+            <span>ARABIAN SEA / 03:42 IST</span>
+          </div>
+          <h1 class="display">Connective<br/>intelligence<br/>for <span class="accent">sovereign</span><br/>defence.</h1>
+        </div>
+        <div class="hero-bottom">
+          <p class="lede">A fragmented battlespace becomes one organism. Sensors, platforms, and operators coordinate through a single coherent system — designed, owned, and deployed under national authority.</p>
+          <div class="hero-spec">
+            <strong>System class</strong>
+            Multi-domain C4ISR<br/>
+            <strong style="margin-top:14px">Deployment</strong>
+            Edge · Air-gap · Hybrid<br/>
+            <strong style="margin-top:14px">Status</strong>
+            Operational
+          </div>
+        </div>
+      </div>
+      <div class="hero-image">
+      </div>
+    </div>
+  </section>
+
+  <section class="pillars" id="platforms">
+    <a class="pillar" href="#cap-sf01" style="text-decoration:none;color:inherit;display:block">
+      <div class="pillar-num">→ 001</div>
+      <div class="pillar-title">Sensor Fusion</div>
+      <div class="pillar-body">Multi-modal streams fused at edge under contested bandwidth.</div>
+    </a>
+    <a class="pillar" href="#cap-ac02" style="text-decoration:none;color:inherit;display:block">
+      <div class="pillar-num">→ 002</div>
+      <div class="pillar-title">Autonomous Mesh</div>
+      <div class="pillar-body">Heterogeneous platforms coordinate without centralised control.</div>
+    </a>
+    <a class="pillar" href="#cap-da03" style="text-decoration:none;color:inherit;display:block">
+      <div class="pillar-num">→ 003</div>
+      <div class="pillar-title">Decision Layer</div>
+      <div class="pillar-body">Options with provenance — not dashboards with metrics.</div>
+    </a>
+    <a class="pillar" href="#cap-sd04" style="text-decoration:none;color:inherit;display:block">
+      <div class="pillar-num">→ 004</div>
+      <div class="pillar-title">Sovereign Stack</div>
+      <div class="pillar-body">Models, weights, data — inside national jurisdiction. Always.</div>
+    </a>
+  </section>
+
+  <section class="mission" id="mission">
+    <div class="mission-grid">
+      <div class="mission-label"><span class="dot">●</span> MISSION / 2026</div>
+      <div class="mission-text">
+        The next defining advantage will not be a faster missile. It will be the <span class="accent">silent connective tissue</span> beneath them — the system that makes a thousand independent assets behave as a single coherent intelligence.
+      </div>
+    </div>
+  </section>
+
+  <section class="architecture" id="architecture">
+    <div class="arch-head">
+      <h2 class="arch-title">Architecture</h2>
+      <div class="arch-meta">FIG. 01 / SHEET A</div>
+    </div>
+    <div class="arch-grid">
+      <div class="arch-text">
+        <div class="figref">FIG. 01 — Architecture of coherence</div>
+        <h3>From archipelago<br/>to organism.</h3>
+        <p>A System of Systems does not replace existing platforms. It composes them — sensors, autonomy, command, and operators — into a coordinated organism whose intelligence exceeds the sum of its parts.</p>
+        <p>Six domains. One decision graph. Sub-second to coherence.</p>
+        <div class="legend">
+          <div class="legend-item"><span class="legend-swatch"></span>Sensor / Platform</div>
+          <div class="legend-item"><span class="legend-swatch rust"></span>Decision Graph</div>
+          <div class="legend-item"><span class="legend-swatch" style="background:var(--ink)"></span>Primary Link</div>
+          <div class="legend-item"><span class="legend-swatch" style="background:transparent;border-style:dashed"></span>Mesh Lateral</div>
+        </div>
+      </div>
+      <div class="arch-svg">
+        <svg viewBox="0 0 600 440" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+              <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#C8C4B8" stroke-width="0.4"/>
+            </pattern>
+          </defs>
+          <rect width="600" height="440" fill="url(#grid)" opacity="0.6"/>
+
+          <!-- center node -->
+          <circle cx="300" cy="220" r="58" fill="#F5F3EE" stroke="#0A0A0A" stroke-width="1.6"/>
+          <circle cx="300" cy="220" r="40" fill="none" stroke="#B14A22" stroke-width="0.8" stroke-dasharray="2 3"/>
+          <text x="300" y="216" text-anchor="middle" font-family="Inter Tight,sans-serif" font-weight="700" font-size="13" fill="#0A0A0A" text-transform="uppercase" letter-spacing="0.05em">DECISION</text>
+          <text x="300" y="232" text-anchor="middle" font-family="Inter Tight,sans-serif" font-weight="700" font-size="13" fill="#0A0A0A">GRAPH</text>
+          <text x="300" y="250" text-anchor="middle" font-family="JetBrains Mono,monospace" font-size="9" fill="#B14A22">CORE</text>
+
+          <!-- nodes around -->
+          <g font-family="JetBrains Mono,monospace" font-size="10" fill="#0A0A0A">
+            <rect x="60" y="60" width="80" height="40" fill="#F5F3EE" stroke="#0A0A0A" stroke-width="1.2"/>
+            <text x="100" y="78" text-anchor="middle" font-weight="500">RADAR</text>
+            <text x="100" y="92" text-anchor="middle" font-size="8" fill="#7A7670">SF·01</text>
+
+            <rect x="460" y="60" width="80" height="40" fill="#F5F3EE" stroke="#0A0A0A" stroke-width="1.2"/>
+            <text x="500" y="78" text-anchor="middle" font-weight="500">EO / IR</text>
+            <text x="500" y="92" text-anchor="middle" font-size="8" fill="#7A7670">SF·02</text>
+
+            <rect x="60" y="340" width="80" height="40" fill="#F5F3EE" stroke="#0A0A0A" stroke-width="1.2"/>
+            <text x="100" y="358" text-anchor="middle" font-weight="500">SIGINT</text>
+            <text x="100" y="372" text-anchor="middle" font-size="8" fill="#7A7670">SF·03</text>
+
+            <rect x="460" y="340" width="80" height="40" fill="#F5F3EE" stroke="#0A0A0A" stroke-width="1.2"/>
+            <text x="500" y="358" text-anchor="middle" font-weight="500">ACOUSTIC</text>
+            <text x="500" y="372" text-anchor="middle" font-size="8" fill="#7A7670">SF·04</text>
+
+            <rect x="260" y="20" width="80" height="40" fill="#F5F3EE" stroke="#0A0A0A" stroke-width="1.2"/>
+            <text x="300" y="38" text-anchor="middle" font-weight="500">ORBITAL</text>
+            <text x="300" y="52" text-anchor="middle" font-size="8" fill="#7A7670">SF·05</text>
+
+            <rect x="260" y="380" width="80" height="40" fill="#0A0A0A" stroke="#0A0A0A" stroke-width="1.2"/>
+            <text x="300" y="398" text-anchor="middle" font-weight="500" fill="#F5F3EE">OPERATOR</text>
+            <text x="300" y="412" text-anchor="middle" font-size="8" fill="#888">DA·03</text>
+          </g>
+
+          <!-- connecting lines (primary) -->
+          <g stroke="#0A0A0A" stroke-width="1" fill="none">
+            <line x1="140" y1="80" x2="244" y2="190"/>
+            <line x1="460" y1="80" x2="356" y2="190"/>
+            <line x1="140" y1="360" x2="244" y2="250"/>
+            <line x1="460" y1="360" x2="356" y2="250"/>
+            <line x1="300" y1="60" x2="300" y2="162"/>
+            <line x1="300" y1="380" x2="300" y2="278"/>
+          </g>
+          <!-- mesh lateral (dashed) -->
+          <g stroke="#7A7670" stroke-width="0.7" fill="none" stroke-dasharray="3 4">
+            <path d="M 140 80 Q 300 0 460 80"/>
+            <path d="M 140 360 Q 300 440 460 360"/>
+            <path d="M 100 100 Q 30 220 100 340"/>
+            <path d="M 500 100 Q 570 220 500 340"/>
+          </g>
+
+          <!-- annotation -->
+          <line x1="358" y1="220" x2="430" y2="220" stroke="#B14A22" stroke-width="1"/>
+          <line x1="430" y1="220" x2="430" y2="200" stroke="#B14A22" stroke-width="1"/>
+          <text x="430" y="194" font-family="JetBrains Mono,monospace" font-size="9" fill="#B14A22" letter-spacing="0.05em">FUSION</text>
+          <text x="430" y="206" font-family="JetBrains Mono,monospace" font-size="9" fill="#7A7670">sub-second</text>
+        </svg>
+      </div>
+    </div>
+  </section>
+
+  <section class="specs" id="capabilities">
+    <div class="specs-head">
+      <h2 class="specs-title">Capability Stack</h2>
+      <div class="specs-meta">SECTION 02 / SHEET A</div>
+    </div>
+
+    <div class="specs-grid">
+      <div class="spec-cell" id="cap-sf01">
+        <div class="spec-id"><span>SF · 01</span><span>EDGE</span></div>
+        <div class="spec-name">Edge Sensor Fusion</div>
+        <div class="spec-desc">Radar, EO/IR, SIGINT, acoustic — fused on-platform under contested bandwidth. No cloud round-trip. Decision-grade picture in sub-second.</div>
+      </div>
+      <div class="spec-cell" id="cap-ac02">
+        <div class="spec-id"><span>AC · 02</span><span>MESH</span></div>
+        <div class="spec-name">Autonomous Coordination</div>
+        <div class="spec-desc">Air, sea, ground, orbital platforms share a mission grammar — distributed initiative without single point of command failure.</div>
+      </div>
+      <div class="spec-cell" id="cap-da03">
+        <div class="spec-id"><span>DA · 03</span><span>HUMAN</span></div>
+        <div class="spec-name">Decision Augmentation</div>
+        <div class="spec-desc">Operators receive options, not dashboards. Provenance, confidence, counterfactual — preserved on every recommendation.</div>
+      </div>
+      <div class="spec-cell" id="cap-sd04">
+        <div class="spec-id"><span>SD · 04</span><span>STACK</span></div>
+        <div class="spec-name">Sovereign Deployment</div>
+        <div class="spec-desc">Air-gapped, on-premise, hybrid. Models and operational data never leave national jurisdiction. No black boxes.</div>
+      </div>
+      <div class="spec-cell">
+        <div class="spec-id"><span>RT · 05</span><span>RES</span></div>
+        <div class="spec-name">Contested Resilience</div>
+        <div class="spec-desc">GPS-denied, comms-degraded, jammed. The system continues to coordinate — gracefully degraded, never silent.</div>
+      </div>
+      <div class="spec-cell">
+        <div class="spec-id"><span>OI · 06</span><span>OPEN</span></div>
+        <div class="spec-name">Open Integration</div>
+        <div class="spec-desc">Built to absorb existing fleet — legacy radars, off-the-shelf drones, allied systems. No rip-and-replace.</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="break">
+    <div class="break-content">
+      <div class="break-eyebrow">FIELD NOTE / 04</div>
+      <h3 class="break-quote">Coherence is the new <span class="accent">deterrent.</span></h3>
+      <div class="break-attr">— Company mission statement</div>
+    </div>
+  </section>
+
+  <section class="join" id="careers">
+    <div class="join-eyebrow">→ JOIN THE COMPANY</div>
+    <h3 class="join-title">Build the system<br/>India needs.</h3>
+    <a class="join-cta" href="careers.html">VIEW OPEN ROLES →</a>
+  </section>
+
+  <footer class="footer">
+    <div class="footer-top">
+      <div>
+        <div class="footer-mark"><a href="design-hybrid.html" style="text-decoration:none;color:inherit;display:flex;align-items:center;gap:14px"><svg width="40" height="40" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="12" height="12" x="0" y="0" fill="#B14A22"/><rect width="12" height="12" x="14" y="0" fill="#2A2A2A"/><rect width="12" height="12" x="0" y="14" fill="#2A2A2A"/><rect width="12" height="12" x="14" y="14" fill="#2A2A2A"/><rect width="4" height="4" x="18" y="18" fill="#B14A22"/></svg><span>SMART<br/>SYSTEM OF <span>SYSTEMS</span></span></a></div>
+        <div class="footer-tag">BUILT IN INDIA · FOR THE DEFENCE OF OPEN SOCIETIES</div>
+      </div>
+      <div class="footer-col"><h4>COMPANY</h4><a href="about.html">About</a><a href="careers.html">Careers</a></div>
+      <div class="footer-col"><h4>CONTACT</h4><a href="briefing.html">Briefing</a></div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 — REGISTERED IN INDIA</span>
+      <span>EN · CLASSIFIED HANDLING</span>
+    </div>
+  </footer>
+</body>
+</html>
