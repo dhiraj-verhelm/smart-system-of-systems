@@ -281,3 +281,49 @@
   .meta-block { grid-template-columns: 1fr !important; }
   .doc-meta-top { grid-template-columns: 1fr !important; }
 }
+
+/* ============================================================
+   Phone fixes — sections that kept desktop columns and pushed
+   content past the right edge of the screen
+   ============================================================ */
+@media (max-width: 768px) {
+  /* Careers: role description + "You'll own" box */
+  .role-body { grid-template-columns: 1fr !important; gap: 40px !important; padding: 48px 20px !important; }
+  .role-body > * { min-width: 0; }
+
+  /* Capabilities: mission/platform matrix scrolls sideways inside its frame */
+  .matrix-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+  .matrix-table { min-width: 560px; }
+  .matrix-table td:first-child { width: 150px !important; }
+  .matrix-legend { flex-wrap: wrap !important; gap: 12px 24px !important; padding: 16px !important; }
+
+  /* Capabilities: exemplar quotes */
+  .cap-exemplar { grid-template-columns: 1fr !important; gap: 20px !important; padding: 48px 20px !important; }
+  .cap-exemplar > * { min-width: 0; }
+  .ex-text { font-size: 20px !important; }
+  .ex-meta { text-align: left !important; }
+
+  /* Architecture: planes and reference deployment */
+  .planes-grid { grid-template-columns: 1fr !important; gap: 16px !important; }
+  .plane-card { padding: 24px !important; }
+  .ref-head { flex-direction: column !important; align-items: flex-start !important; gap: 12px !important; }
+  .ref-grid { grid-template-columns: 1fr !important; gap: 32px !important; }
+  .ref-grid > * { min-width: 0; }
+  .ref-svg-wrap { padding: 16px !important; }
+
+  /* Platforms: Devanagari display word and headline */
+  .platform-title-card > * { min-width: 0; }
+  .deva-display { font-size: 96px !important; padding-bottom: 0 !important; }
+  .platform-headline-block { padding-bottom: 0 !important; }
+  .platform-headline-block h2 { font-size: 48px !important; }
+  .platform-headline-block .english-name { font-size: 18px !important; }
+
+  /* Capabilities: closing "what we do not build" list */
+  .coda-grid { grid-template-columns: 1fr !important; gap: 32px !important; }
+  .coda-grid > * { min-width: 0; }
+  .anti-list li { grid-template-columns: 40px 1fr !important; gap: 12px !important; }
+
+  /* Newsroom: filter pills wrap */
+  .filter-bar { flex-wrap: wrap !important; gap: 12px !important; padding: 20px !important; }
+  .filter-pills { flex-wrap: wrap !important; }
+}
