@@ -4,6 +4,9 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Request a Briefing — Smart System of Systems</title>
+<link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
+<link rel="icon" type="image/png" sizes="192x192" href="assets/favicon-192.png">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -57,7 +60,10 @@
 
   .submit{margin-top:16px;background:var(--ink);color:var(--paper);padding:18px 32px;font-family:'JetBrains Mono',monospace;font-size:13px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;border:none;cursor:pointer;width:100%;text-align:center;transition:background 0.2s}
   .submit:hover{background:var(--rust)}
-  .form-footer{margin-top:24px;font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--ink-3);letter-spacing:0.05em;text-transform:uppercase;line-height:1.6}
+  .hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+.form-status{margin-top:16px;font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.05em;text-transform:uppercase;line-height:1.6;min-height:1em}
+.form-status.error{color:var(--rust)}
+.form-footer{margin-top:24px;font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--ink-3);letter-spacing:0.05em;text-transform:uppercase;line-height:1.6}
 
   .footer{background:var(--ink);color:var(--paper);padding:64px 56px 32px}
   .footer-top{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:48px;padding-bottom:48px;border-bottom:1px solid #2A2A2A}
@@ -74,7 +80,7 @@
 </head>
 <body>
   <nav class="nav">
-    <div class="nav-mark"><a href="design-hybrid.html" style="text-decoration:none;color:inherit;display:flex;align-items:center;gap:14px"><svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="12" height="12" x="0" y="0" fill="#B14A22"/><rect width="12" height="12" x="14" y="0" fill="#0A0A0A"/><rect width="12" height="12" x="0" y="14" fill="#0A0A0A"/><rect width="12" height="12" x="14" y="14" fill="#0A0A0A"/><rect width="4" height="4" x="18" y="18" fill="#B14A22"/></svg><span>SMART SYSTEM OF SYSTEMS</span></a></div>
+    <div class="nav-mark"><a href="index.html" style="text-decoration:none;color:inherit;display:flex;align-items:center;gap:14px"><img class="brand-emblem" src="assets/ssos-emblem.png" alt="" width="34" height="52"><span>SMART SYSTEM OF SYSTEMS</span></a></div>
     <div class="nav-links">
       <a href="platforms.html">Platforms</a><a href="capabilities.html">Capabilities</a><a href="architecture.html">Architecture</a><a href="mission.html">Mission</a><a href="careers.html">Careers</a>
     </div>
@@ -82,7 +88,7 @@
   </nav>
 
   <div class="breadcrumb">
-    <a href="design-hybrid.html">Home</a>
+    <a href="index.html">Home</a>
     <span class="sep">/</span>
     <span class="current">Briefing</span>
   </div>
@@ -105,7 +111,7 @@
         </div>
         <div class="meta-item">
           <strong>For press</strong>
-          Editorial enquiries should be routed via <a href="newsroom.html" style="border-bottom:1px solid var(--ink);text-decoration:none">our newsroom</a>.
+          Editorial enquiries: use this form and choose “Press / media” as the nature of enquiry.
         </div>
         <div class="meta-item">
           <strong>For applicants</strong>
@@ -115,29 +121,29 @@
     </div>
 
     <div class="form-right">
-      <form onsubmit="event.preventDefault();this.querySelector('.submit').textContent='SUBMITTED — WE\\'LL BE IN TOUCH'">
+      <form id="briefing-form" novalidate>
         <div class="form-row split">
           <div>
             <label>First name <span class="req">*</span></label>
-            <input type="text" required>
+            <input type="text" name="first_name" required>
           </div>
           <div>
             <label>Last name <span class="req">*</span></label>
-            <input type="text" required>
+            <input type="text" name="last_name" required>
           </div>
         </div>
         <div class="form-row">
           <label>Organisation <span class="req">*</span></label>
-          <input type="text" required>
+          <input type="text" name="organisation" required>
         </div>
         <div class="form-row split">
           <div>
             <label>Role / title</label>
-            <input type="text">
+            <input type="text" name="role">
           </div>
           <div>
             <label>Country <span class="req">*</span></label>
-            <select required>
+            <select name="country" required>
               <option>India</option>
               <option>United Kingdom</option>
               <option>United States</option>
@@ -151,24 +157,27 @@
         </div>
         <div class="form-row">
           <label>Work email <span class="req">*</span></label>
-          <input type="email" required>
+          <input type="email" name="email" required>
         </div>
         <div class="form-row">
           <label>Nature of enquiry <span class="req">*</span></label>
-          <select required>
+          <select name="enquiry_type" required>
             <option>Procurement / RFI / RFP</option>
             <option>Programme partnership</option>
             <option>Platform integration (OEM)</option>
             <option>Research collaboration</option>
             <option>Investor enquiry</option>
+            <option>Press / media</option>
             <option>Other</option>
           </select>
         </div>
         <div class="form-row">
           <label>Brief context (optional)</label>
-          <textarea placeholder="What would you like to discuss?"></textarea>
+          <textarea name="context" placeholder="What would you like to discuss?"></textarea>
         </div>
+        <div class="hp" aria-hidden="true"><label>Leave this empty<input type="text" name="website" tabindex="-1" autocomplete="off"></label></div>
         <button type="submit" class="submit">SUBMIT REQUEST →</button>
+        <div class="form-status" role="status" aria-live="polite"></div>
         <div class="form-footer">
           BY SUBMITTING THIS FORM YOU CONFIRM REPRESENTATION OF A LEGITIMATE DEFENCE OR ALLIED ENTITY. ALL ENQUIRIES ARE LOGGED AND HANDLED UNDER INDIAN JURISDICTION.
         </div>
@@ -179,7 +188,7 @@
   <footer class="footer">
     <div class="footer-top">
       <div>
-        <div class="footer-mark"><a href="design-hybrid.html" style="text-decoration:none;color:inherit;display:flex;align-items:center;gap:14px"><svg width="40" height="40" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="12" height="12" x="0" y="0" fill="#B14A22"/><rect width="12" height="12" x="14" y="0" fill="#2A2A2A"/><rect width="12" height="12" x="0" y="14" fill="#2A2A2A"/><rect width="12" height="12" x="14" y="14" fill="#2A2A2A"/><rect width="4" height="4" x="18" y="18" fill="#B14A22"/></svg><span>SMART<br/>SYSTEM OF <span>SYSTEMS</span></span></a></div>
+        <div class="footer-mark"><a href="index.html" style="text-decoration:none;color:inherit;display:flex;align-items:center;gap:14px"><img class="brand-emblem" src="assets/ssos-emblem.png" alt="" width="47" height="72"><span>SMART<br/>SYSTEM OF <span>SYSTEMS</span></span></a></div>
         <div class="footer-tag">BUILT IN INDIA · FOR THE DEFENCE OF OPEN SOCIETIES</div>
       </div>
       <div class="footer-col"><h4>COMPANY</h4><a href="about.html">About</a><a href="careers.html">Careers</a></div>
@@ -190,5 +199,34 @@
       <span>EN · CLASSIFIED HANDLING</span>
     </div>
   </footer>
+<script>
+// Enquiries are sent to a Google Apps Script web app that appends a row to
+// the "SSoS Briefing Enquiries" Google Sheet. Set the deployed URL below.
+const ENQUIRY_ENDPOINT = 'https://script.google.com/macros/s/AKfycbwzLDUxD5rXaNNL6xOGDQjDRGvzcxdbAdNrS6lYzUyUULRgeeLscmOJRbvW81K17eG2_A/exec';
+(function () {
+  const form = document.getElementById('briefing-form');
+  const btn = form.querySelector('.submit');
+  const status = form.querySelector('.form-status');
+  const label = btn.textContent;
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    status.textContent = ''; status.classList.remove('error');
+    if (!form.checkValidity()) { form.reportValidity(); return; }
+    btn.disabled = true; btn.textContent = 'SENDING…';
+    try {
+      const body = new URLSearchParams(new FormData(form));
+      body.append('page', location.href);
+      // Apps Script does not send CORS headers; no-cors still delivers the POST.
+      await fetch(ENQUIRY_ENDPOINT, { method: 'POST', mode: 'no-cors', body });
+      form.reset();
+      btn.textContent = 'SUBMITTED — WE\'LL BE IN TOUCH';
+    } catch (err) {
+      btn.disabled = false; btn.textContent = label;
+      status.textContent = 'Could not send — please check your connection and try again.';
+      status.classList.add('error');
+    }
+  });
+})();
+</script>
 </body>
 </html>
