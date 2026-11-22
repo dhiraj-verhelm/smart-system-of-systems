@@ -8,6 +8,9 @@
  */
 
 const NOTIFY_BY_EMAIL = true;   // set to false to stop the email alert
+// Extra people who get every alert, comma-separated. Kept empty in the public
+// repo; the live copy in the Google sheet has the real addresses.
+const EXTRA_RECIPIENTS = '';
 const MAX_LEN = 5000;           // cap any single field
 
 const FIELDS = ['first_name', 'last_name', 'organisation', 'role', 'country',
@@ -39,7 +42,7 @@ function doPost(e) {
     try {
       const ss = SpreadsheetApp.getActiveSpreadsheet();
       MailApp.sendEmail({
-        to: Session.getEffectiveUser().getEmail(),
+        to: [Session.getEffectiveUser().getEmail()].concat(EXTRA_RECIPIENTS ? [EXTRA_RECIPIENTS] : []).join(','),
         subject: 'New briefing enquiry: ' + row[1] + ' ' + row[2] + ' (' + row[3] + ')',
         body: [
           'Received: ' + received + ' IST',
