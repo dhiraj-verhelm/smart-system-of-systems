@@ -1,0 +1,6 @@
+{
+  "redirects": [
+    { "source": "/newsroom", "destination": "/", "permanent": true },
+    { "source": "/newsroom.html", "destination": "/", "permanent": true }
+  ]
+}

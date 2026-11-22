@@ -60,7 +60,10 @@
 
   .submit{margin-top:16px;background:var(--ink);color:var(--paper);padding:18px 32px;font-family:'JetBrains Mono',monospace;font-size:13px;font-weight:600;letter-spacing:0.08em;text-transform:uppercase;border:none;cursor:pointer;width:100%;text-align:center;transition:background 0.2s}
   .submit:hover{background:var(--rust)}
-  .form-footer{margin-top:24px;font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--ink-3);letter-spacing:0.05em;text-transform:uppercase;line-height:1.6}
+  .hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+.form-status{margin-top:16px;font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:0.05em;text-transform:uppercase;line-height:1.6;min-height:1em}
+.form-status.error{color:var(--rust)}
+.form-footer{margin-top:24px;font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--ink-3);letter-spacing:0.05em;text-transform:uppercase;line-height:1.6}
 
   .footer{background:var(--ink);color:var(--paper);padding:64px 56px 32px}
   .footer-top{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:48px;padding-bottom:48px;border-bottom:1px solid #2A2A2A}
@@ -108,7 +111,7 @@
         </div>
         <div class="meta-item">
           <strong>For press</strong>
-          Editorial enquiries should be routed via <a href="newsroom.html" style="border-bottom:1px solid var(--ink);text-decoration:none">our newsroom</a>.
+          Editorial enquiries: use this form and choose “Press / media” as the nature of enquiry.
         </div>
         <div class="meta-item">
           <strong>For applicants</strong>
@@ -118,29 +121,29 @@
     </div>
 
     <div class="form-right">
-      <form onsubmit="event.preventDefault();this.querySelector('.submit').textContent='SUBMITTED — WE\\'LL BE IN TOUCH'">
+      <form id="briefing-form" novalidate>
         <div class="form-row split">
           <div>
             <label>First name <span class="req">*</span></label>
-            <input type="text" required>
+            <input type="text" name="first_name" required>
           </div>
           <div>
             <label>Last name <span class="req">*</span></label>
-            <input type="text" required>
+            <input type="text" name="last_name" required>
           </div>
         </div>
         <div class="form-row">
           <label>Organisation <span class="req">*</span></label>
-          <input type="text" required>
+          <input type="text" name="organisation" required>
         </div>
         <div class="form-row split">
           <div>
             <label>Role / title</label>
-            <input type="text">
+            <input type="text" name="role">
           </div>
           <div>
             <label>Country <span class="req">*</span></label>
-            <select required>
+            <select name="country" required>
               <option>India</option>
               <option>United Kingdom</option>
               <option>United States</option>
@@ -154,24 +157,27 @@
         </div>
         <div class="form-row">
           <label>Work email <span class="req">*</span></label>
-          <input type="email" required>
+          <input type="email" name="email" required>
         </div>
         <div class="form-row">
           <label>Nature of enquiry <span class="req">*</span></label>
-          <select required>
+          <select name="enquiry_type" required>
             <option>Procurement / RFI / RFP</option>
             <option>Programme partnership</option>
             <option>Platform integration (OEM)</option>
             <option>Research collaboration</option>
             <option>Investor enquiry</option>
+            <option>Press / media</option>
             <option>Other</option>
           </select>
         </div>
         <div class="form-row">
           <label>Brief context (optional)</label>
-          <textarea placeholder="What would you like to discuss?"></textarea>
+          <textarea name="context" placeholder="What would you like to discuss?"></textarea>
         </div>
+        <div class="hp" aria-hidden="true"><label>Leave this empty<input type="text" name="website" tabindex="-1" autocomplete="off"></label></div>
         <button type="submit" class="submit">SUBMIT REQUEST →</button>
+        <div class="form-status" role="status" aria-live="polite"></div>
         <div class="form-footer">
           BY SUBMITTING THIS FORM YOU CONFIRM REPRESENTATION OF A LEGITIMATE DEFENCE OR ALLIED ENTITY. ALL ENQUIRIES ARE LOGGED AND HANDLED UNDER INDIAN JURISDICTION.
         </div>
@@ -193,5 +199,34 @@
       <span>EN · CLASSIFIED HANDLING</span>
     </div>
   </footer>
+<script>
+// Enquiries are sent to a Google Apps Script web app that appends a row to
+// the "SSoS Briefing Enquiries" Google Sheet. Set the deployed URL below.
+const ENQUIRY_ENDPOINT = 'PASTE_APPS_SCRIPT_WEB_APP_URL_HERE';
+(function () {
+  const form = document.getElementById('briefing-form');
+  const btn = form.querySelector('.submit');
+  const status = form.querySelector('.form-status');
+  const label = btn.textContent;
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    status.textContent = ''; status.classList.remove('error');
+    if (!form.checkValidity()) { form.reportValidity(); return; }
+    btn.disabled = true; btn.textContent = 'SENDING…';
+    try {
+      const body = new URLSearchParams(new FormData(form));
+      body.append('page', location.href);
+      // Apps Script does not send CORS headers; no-cors still delivers the POST.
+      await fetch(ENQUIRY_ENDPOINT, { method: 'POST', mode: 'no-cors', body });
+      form.reset();
+      btn.textContent = 'SUBMITTED — WE\'LL BE IN TOUCH';
+    } catch (err) {
+      btn.disabled = false; btn.textContent = label;
+      status.textContent = 'Could not send — please check your connection and try again.';
+      status.classList.add('error');
+    }
+  });
+})();
+</script>
 </body>
 </html>
