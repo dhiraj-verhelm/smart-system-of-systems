@@ -52,7 +52,7 @@
     gap: 10px !important;
   }
   .nav-mark { font-size: 13px !important; }
-  .nav-mark .brand-emblem { width: auto !important; height: 36px !important; }
+  .nav-mark .brand-emblem { width: auto !important; height: 44px !important; }
   .nav-mark span { font-size: 11px !important; }
   .nav-links {
     order: 3 !important;
@@ -166,6 +166,7 @@
   .footer { padding: 40px 20px 24px !important; }
   .footer-top { grid-template-columns: 1fr !important; gap: 32px !important; padding-bottom: 32px !important; }
   .footer-mark { font-size: 22px !important; }
+  .footer-mark .brand-logo-full { width: auto !important; height: 200px !important; }
   .footer-bottom { flex-direction: column !important; gap: 12px !important; align-items: flex-start !important; }
 
   /* ============================================================
